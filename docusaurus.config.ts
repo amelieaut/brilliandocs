@@ -64,17 +64,12 @@ const config: Config = {
         src: 'img/logo.svg',
       },
       items: [
-        // {
-        //   type: 'docSidebar',
-        //   sidebarId: 'tutorialSidebar',
-        //   position: 'left',
-        //   label: 'Tutorial',
-        // },
-        {to: '/docs/category/brillianideas', label: 'BrillianIdeas', position: 'left'},
-        {to: '/docs/category/brillianquiz', label: 'BrillianQuiz', position: 'left'},
-        {to: '/docs/category/brilliancrm', label: 'BrillianCRM', position: 'left'},
-        {to: '/docs/category/brillianicm', label: 'BrillianICM', position: 'left'},
-        {to: '/docs/category/imbit-n3xt', label: 'IMBIT-N3xt', position: 'left'},
+        {sidebarId: 'GeneralITSidebar', type: 'docSidebar', label: 'General IT', position: 'left'},
+        {sidebarId: 'BrillianIdeasSidebar', type: 'docSidebar', label: 'BrillianIdeas', position: 'left'},
+        {sidebarId: 'BrillianQuizSidebar', type: 'docSidebar', label: 'BrillianQuiz', position: 'left'},
+        {sidebarId: 'BrillianCRMSidebar', type: 'docSidebar', label: 'BrillianCRM', position: 'left'},
+        {sidebarId: 'BrillianICMSidebar', type: 'docSidebar', label: 'BrillianICM', position: 'left'},
+        {sidebarId: 'IMBITN3xtSidebar', type: 'docSidebar', label: 'IMBIT-N3xt', position: 'left'},
         {
           href: 'https://github.com/IMBIT-Mannheim/brilliandocs',
           label: 'GitHub',
@@ -89,24 +84,28 @@ const config: Config = {
           title: 'Docs',
           items: [
             {
+              label: 'General IT',
+              to: '/docs/general_IT/',
+            },
+            {
               label: 'BrillianIdeas',
-              to: '/docs/category/brillianideas',
+              to: '/docs/brillianideas/',
             },
             {
               label: 'BrillianQuiz',
-              to: '/docs/category/brillianquiz',
+              to: '/docs/brillianquiz/',
             },
             {
               label: 'BrillianCRM',
-              to: '/docs/category/brilliancrm',
+              to: '/docs/brilliancrm/',
             },
             {
               label: 'BrillianICM',
-              to: '/docs/category/brillianicm',
+              to: '/docs/brillianicm/',
             },
             {
               label: 'IMBIT-N3xt',
-              to: '/docs/category/imbit-n3xt',
+              to: '/docs/imbit-n3xt/',
             },
           ],
         },
