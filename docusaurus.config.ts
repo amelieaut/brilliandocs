@@ -38,14 +38,14 @@ const config: Config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/IMBIT-Mannheim/brilliandocs/tree/main/packages/create-docusaurus/templates/shared/',
+            'https://github.com/IMBIT-Mannheim/brilliandocs/tree/main/',
         },
         blog: {
           showReadingTime: true,
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/IMBIT-Mannheim/brilliandocs/tree/main/packages/create-docusaurus/templates/shared/',
+            'https://github.com/IMBIT-Mannheim/brilliandocs/tree/main/',
         },
         theme: {
           customCss: './src/css/custom.css',
@@ -64,17 +64,17 @@ const config: Config = {
         src: 'img/logo.svg',
       },
       items: [
-        {
-          type: 'docSidebar',
-          sidebarId: 'tutorialSidebar',
-          position: 'left',
-          label: 'Tutorial',
-        },
-        {to: '/brillianideas', label: 'BrillianIdeas', position: 'left'},
-        {to: '/brillianquiz', label: 'BrillianQuiz', position: 'left'},
-        {to: '/brilliancrm', label: 'BrillianCRM', position: 'left'},
-        {to: '/brillianicm', label: 'BrillianICM', position: 'left'},
-        {to: '/imbit-n3xt', label: 'IMBIT-N3xt', position: 'left'},
+        // {
+        //   type: 'docSidebar',
+        //   sidebarId: 'tutorialSidebar',
+        //   position: 'left',
+        //   label: 'Tutorial',
+        // },
+        {to: '/docs/category/brillianideas', label: 'BrillianIdeas', position: 'left'},
+        {to: '/docs/category/brillianquiz', label: 'BrillianQuiz', position: 'left'},
+        {to: '/docs/category/brilliancrm', label: 'BrillianCRM', position: 'left'},
+        {to: '/docs/category/brillianicm', label: 'BrillianICM', position: 'left'},
+        {to: '/docs/category/imbit-n3xt', label: 'IMBIT-N3xt', position: 'left'},
         {
           href: 'https://github.com/IMBIT-Mannheim/brilliandocs',
           label: 'GitHub',
@@ -90,23 +90,23 @@ const config: Config = {
           items: [
             {
               label: 'BrillianIdeas',
-              to: '/docs/brillianideas',
+              to: '/docs/category/brillianideas',
             },
             {
               label: 'BrillianQuiz',
-              to: '/docs/brillianquiz',
+              to: '/docs/category/brillianquiz',
             },
             {
               label: 'BrillianCRM',
-              to: '/docs/brilliancrm',
+              to: '/docs/category/brilliancrm',
             },
             {
               label: 'BrillianICM',
-              to: '/docs/brillianicm',
+              to: '/docs/category/brillianicm',
             },
             {
               label: 'IMBIT-N3xt',
-              to: '/docs/imbit-n3xt',
+              to: '/docs/category/imbit-n3xt',
             },
           ],
         },
