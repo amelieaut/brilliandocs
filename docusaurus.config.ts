@@ -38,14 +38,14 @@ const config: Config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+            'https://github.com/IMBIT-Mannheim/brilliandocs/tree/main/packages/create-docusaurus/templates/shared/',
         },
         blog: {
           showReadingTime: true,
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+            'https://github.com/IMBIT-Mannheim/brilliandocs/tree/main/packages/create-docusaurus/templates/shared/',
         },
         theme: {
           customCss: './src/css/custom.css',
@@ -70,9 +70,13 @@ const config: Config = {
           position: 'left',
           label: 'Tutorial',
         },
-        {to: '/blog', label: 'Blog', position: 'left'},
+        {to: '/brillianideas', label: 'BrillianIdeas', position: 'left'},
+        {to: '/brillianquiz', label: 'BrillianQuiz', position: 'left'},
+        {to: '/brilliancrm', label: 'BrillianCRM', position: 'left'},
+        {to: '/brillianicm', label: 'BrillianICM', position: 'left'},
+        {to: '/imbit-n3xt', label: 'IMBIT-N3xt', position: 'left'},
         {
-          href: 'https://github.com/facebook/docusaurus',
+          href: 'https://github.com/IMBIT-Mannheim/brilliandocs',
           label: 'GitHub',
           position: 'right',
         },
