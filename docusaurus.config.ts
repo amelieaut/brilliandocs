@@ -55,6 +55,13 @@ const config: Config = {
   ],
 
   themeConfig: {
+
+    // algolia: {
+    //   appId: 'YOUR_APP_ID',
+    //   apiKey: 'YOUR_SEARCH_API_KEY',
+    //   indexName: 'YOUR_INDEX_NAME',
+    //   contextualSearch: true,
+    // },
     // Replace with your project's social card
     image: 'img/docusaurus-social-card.jpg',
     navbar: {
