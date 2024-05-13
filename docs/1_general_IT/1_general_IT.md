@@ -1,7 +1,6 @@
 ---
 id: getting-started
 title: Get Started
-sidebar_position: 1
 ---
 
 ## Welcome to the IT Hub of IMBIT@DHBW-Mannheim

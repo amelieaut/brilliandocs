@@ -1,7 +1,6 @@
 ---
 id: credentials
 title: Source Code and Credentials
-sidebar_position: 2
 ---
 
 ## Source Code Access

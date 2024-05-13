@@ -67,17 +67,18 @@ const config: Config = {
         src: 'img/logo.svg',
       },
       items: [
-        {sidebarId: 'GeneralITSidebar', type: 'docSidebar', label: 'General IT', position: 'left'},
-        {sidebarId: 'BrillianIdeasSidebar', type: 'docSidebar', label: 'BrillianIdeas', position: 'left'},
-        {sidebarId: 'BrillianQuizSidebar', type: 'docSidebar', label: 'BrillianQuiz', position: 'left'},
-        {sidebarId: 'BrillianCRMSidebar', type: 'docSidebar', label: 'BrillianCRM', position: 'left'},
-        {sidebarId: 'BrillianICMSidebar', type: 'docSidebar', label: 'BrillianICM', position: 'left'},
-        {sidebarId: 'IMBITN3xtSidebar', type: 'docSidebar', label: 'IMBIT-N3xt', position: 'left'},
-        {
-          href: 'https://github.com/IMBIT-Mannheim/brilliandocs',
-          label: 'GitHub',
-          position: 'right',
-        },
+        // {sidebarId: 'GeneralITSidebar', type: 'docSidebar', label: 'General IT', position: 'left'},
+        // {sidebarId: 'BrillianIdeasSidebar', type: 'docSidebar', label: 'BrillianIdeas', position: 'left'},
+        // {sidebarId: 'BrillianQuizSidebar', type: 'docSidebar', label: 'BrillianQuiz', position: 'left'},
+        // {sidebarId: 'BrillianCRMSidebar', type: 'docSidebar', label: 'BrillianCRM', position: 'left'},
+        // {sidebarId: 'BrillianICMSidebar', type: 'docSidebar', label: 'BrillianICM', position: 'left'},
+        // {sidebarId: 'IMBITN3xtSidebar', type: 'docSidebar', label: 'IMBIT-N3xt', position: 'left'},
+        {sidebarId: 'mySidebar', type: 'docSidebar', label: 'General IT', position: 'left'},
+        {sidebarId: 'mySidebar', type: 'docSidebar', label: 'BrillianIdeas', position: 'left'},
+        {sidebarId: 'mySidebar', type: 'docSidebar', label: 'BrillianQuiz', position: 'left'},
+        {sidebarId: 'mySidebar', type: 'docSidebar', label: 'BrillianCRM', position: 'left'},
+        {sidebarId: 'mySidebar', type: 'docSidebar', label: 'BrillianICM', position: 'left'},
+        {sidebarId: 'mySidebar', type: 'docSidebar', label: 'IMBIT-N3xt', position: 'left'},
       ],
     },
     footer: {
@@ -116,6 +117,10 @@ const config: Config = {
           title: 'IMBIT Pages',
           items: [
             {
+              label: 'Metaverse',
+              href: 'https://www.spatial.io/s/IMBIT-Expo-636a219beea9af00012a5956?share=324222080615529969',
+            },
+            {
               label: 'BrillianIdeas',
               href: 'https://brillianideas.com',
             },
@@ -141,8 +146,24 @@ const config: Config = {
           title: 'Other Links',
           items: [
             {
-              label: 'GitHub Repositories',
+              label: 'AWS Console',
+              href: 'https://console.aws.amazon.com/console/home?nc2=h_ct&src=header-signin',
+            },
+            {
+              label: 'GitHub Organization',
               href: 'https://github.com/IMBIT-Mannheim',
+            },
+            {
+              label: 'Source Code',
+              href: 'https://github.com/IMBIT-Mannheim/brilliandocs',
+            },
+            {
+              label: 'Imprint',
+              href: 'https://brillianideas.com/#impressum',
+            },
+            {
+              label: 'Privacy Page',
+              href: 'https://brillianideas.com/#impressum',
             },
           ],
         },
