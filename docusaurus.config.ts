@@ -1,6 +1,9 @@
 import {themes as prismThemes} from 'prism-react-renderer';
 import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const config: Config = {
   title: 'BrillianDocs',
@@ -48,14 +51,16 @@ const config: Config = {
     ],
   ],
 
+
+
   themeConfig: {
     // Requested from https://docsearch.algolia.com/apply/
-    // algolia: {
-    //   appId: 'YOUR_APP_ID',
-    //   apiKey: 'YOUR_SEARCH_API_KEY',
-    //   indexName: 'YOUR_INDEX_NAME',
-    //   contextualSearch: true,
-    // },
+    algolia: {
+      appId: process.env.ALGOLIA_APP_ID,
+      apiKey: process.env.ALGOLIA_API_KEY,
+      indexName: 'brillianideas',
+      contextualSearch: true,
+    },
     // Replace with your project's social card
     docs: {
       sidebar: {
@@ -110,7 +115,7 @@ const config: Config = {
           items: [
             {
               label: 'General IT',
-              to: '/docs/category/general_IT/',
+              to: '/docs/category/general-it/',
             },
             {
               label: 'BrillianIdeas',
