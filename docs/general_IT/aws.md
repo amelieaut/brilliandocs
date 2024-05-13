@@ -9,15 +9,17 @@ Amazon Web Services (AWS) can present a steep learning curve to newcomers; it's 
 
 
 ## Each AWS Service
-- **Elastic Beanstalk**: A PaaS platform for deploying web applications developed for example with Docker.
-- **Amazon EC2 (Elastic Compute Cloud)**: A service that provides IaaS computing, allowing to run and manage server instances.
-- **Amazon VPC (Virtual Private Cloud)**: A service that provides networking within AWS.
-- **Route 53**: The Domain Name System (DNS) for managing and registering domains.
-- **Amazon CloudFront**: A content delivery network (CDN) service that securely delivers data globally with reverse proxy capabilities.
-- **AWS ACM (Certificate Manager)**: A service that lets you easily create SSL/TLS certificates.
-- **Amazon WorkMail**: Prodiving Mailbox functionality.
-- **Amazon SES (Simple Email Service)**: A cloud-based email sending service.
-- **Amazon IAM (Identity and Access Management)**: A service that enables you to manage user account access to AWS services.
+| AWS Service | Description |
+| ----------- | ----------- |
+| Elastic Beanstalk | A PaaS platform for deploying web applications developed for example with Docker. |
+| Amazon EC2 (Elastic Compute Cloud) | A service that provides IaaS computing, allowing to run and manage server instances. |
+| Amazon VPC (Virtual Private Cloud) | A service that provides networking within AWS. |
+| Route 53 | The Domain Name System (DNS) for managing and registering domains. |
+| Amazon CloudFront | A content delivery network (CDN) service that securely delivers data globally with reverse proxy capabilities. |
+| AWS ACM (Certificate Manager) | A service that lets you easily create SSL/TLS certificates. |
+| Amazon WorkMail | Providing Mailbox functionality. |
+| Amazon SES (Simple Email Service) | A cloud-based email sending service. |
+| Amazon IAM (Identity and Access Management) | A service that enables you to manage user account access to AWS services. |
 
 
 
