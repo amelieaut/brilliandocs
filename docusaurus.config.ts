@@ -9,7 +9,7 @@ const config: Config = {
 
   // Set the production url of your site here
   url: 'https://docs.brillianideas.com',
-  baseUrl: '/',
+  baseUrl: '/brilliandocs/',
   projectName: 'brilliandocs',
   organizationName: 'imbit-mannheim',
   trailingSlash: false,
