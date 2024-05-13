@@ -33,4 +33,4 @@ The following identities are fundamental to our AWS infrastructure:
 - **Management**: While keys are managed via the EC2 dashboard, direct access to the instances through the AWS EC2 UI is preferred for enhanced security and convenience.
 
 
-For detailed instructions on key pair management and instance access, refer to: [Key Pair and Instance Access](ec2#key-pair-and-instance-access).
+For detailed instructions on key pair management and instance access, refer to: [Key Pair and Instance Access](ec2).

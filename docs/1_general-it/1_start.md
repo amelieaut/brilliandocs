@@ -1,7 +1,6 @@
 ---
 id: getting-started
 title: Get Started
-sidebar_position: 1
 ---
 
 # Welcome to BrillianDocs 🎓
@@ -15,12 +14,12 @@ BrillianDocs represents the collective genius of our students at IMBIT@DHBW-Mann
 ## Our Projects
 
 In this thriving ecosystem, our students have crafted some incredible applications, each serving a unique purpose within our community:
-- **[BrillianIdeas](/docs/brillianideas)**: The first website dedicated to our degree containing various information.
-- **[BrillianQuiz](/docs/brillianquiz)**: An engaging platform for testing degree-related knowledge and reinforcing learning through interactive quizzes.
-- **[BrillianCRM](/docs/brilliancrm/)**: A tool designed to learn customer relationship management, providing real-world practice for aspiring professionals.
-- **[BrillianICM](/docs/brillianicm)**: An interactive intercultural game that equips lower semesters with hands-on experience for managing international teams.
-- **[IMBIT-N3xt](/docs/imbit-n3xt)**: Our next-generation webpage showcasing the potential of our degree program to prospective students.
-- **[Metaverse Project](/docs/general_IT/metaverse)**: A digital exposition about our degree offering an exploration into the possibilities of virtual worlds.
+- **[BrillianIdeas](/docs/category/brillianideas)**: The first website dedicated to our degree containing various information.
+- **[BrillianQuiz](/docs/category/brillianquiz)**: An engaging platform for testing degree-related knowledge and reinforcing learning through interactive quizzes.
+- **[BrillianCRM](/docs/category/brilliancrm/)**: A tool designed to learn customer relationship management, providing real-world practice for aspiring professionals.
+- **[BrillianICM](/docs/category/brillianicm)**: An interactive intercultural game that equips lower semesters with hands-on experience for managing international teams.
+- **[IMBIT-N3xt](/docs/category/imbit-n3xt)**: Our next-generation webpage showcasing the potential of our degree program to prospective students.
+- **[Metaverse Project](/docs/other/metaverse)**: A digital exposition about our degree offering an exploration into the possibilities of virtual worlds.
 
 ## The Knowledge Transfer Challenge
 
@@ -33,5 +32,5 @@ BrillianDocs is our answer to effortless and continuous knowledge sharing. It's 
 Contribute to the living legacy of BrillianDocs. Your updates and insights will help ensure it remains a vibrant and relevant resource for all.
 
 :::info Your Contribution Matters!
-Eager to add your mark? Explore the **[Contribution Guide](/docs/contributing)** to learn how you can make BrillianDocs an even richer resource.
+Eager to add your mark? Explore the **[Contribution Guide](/docs/general-it/contributing)** to learn how you can make BrillianDocs an even richer resource.
 :::

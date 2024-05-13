@@ -37,7 +37,7 @@ Expand the tabs below to view DNS settings for each domain:
   ]}>
 
 <TabItem value="brillianideas">
-
+Needs Updating ###!
 | Name                                                             | Type  | Alias | Value                                               | Notes                                        |
 |------------------------------------------------------------------|-------|-------|-----------------------------------------------------|----------------------------------------------|
 | brillianideas.com                                                | A     | Yes   | d1py45h4yu2kpc.cloudfront.net.                      | Maps domain to the IP of the CloudFront distribution |

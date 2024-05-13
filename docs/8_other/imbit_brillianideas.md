@@ -1,7 +1,6 @@
 ---
 id: imbit_brillianideas
 title: BrillianIdeas Wordpress Page
-sidebar_position: 5
 ---
 
 [IMBIT.BrillianIdeas](https://imbit.brillianideas.com) is an unfinished, legacy webpage originating from a collaborative effort in 2021 under the guidance of Prof Krug. This page serves as an information hub crafted by and for the students of IMBIT@DHBW-Mannheim.
