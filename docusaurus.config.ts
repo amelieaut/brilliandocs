@@ -31,8 +31,6 @@ const config: Config = {
       {
         docs: {
           sidebarPath: './sidebars.ts',
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
           editUrl:
             'https://github.com/IMBIT-Mannheim/brilliandocs/tree/main/',
         },
@@ -51,7 +49,7 @@ const config: Config = {
   ],
 
   themeConfig: {
-
+    // Requested from https://docsearch.algolia.com/apply/
     // algolia: {
     //   appId: 'YOUR_APP_ID',
     //   apiKey: 'YOUR_SEARCH_API_KEY',
@@ -59,6 +57,11 @@ const config: Config = {
     //   contextualSearch: true,
     // },
     // Replace with your project's social card
+    docs: {
+      sidebar: {
+        autoCollapseCategories: true,
+      },
+    },
     image: 'img/docusaurus-social-card.jpg',
     navbar: {
       title: 'BrillianDocs',
@@ -67,18 +70,36 @@ const config: Config = {
         src: 'img/logo.svg',
       },
       items: [
-        // {sidebarId: 'GeneralITSidebar', type: 'docSidebar', label: 'General IT', position: 'left'},
-        // {sidebarId: 'BrillianIdeasSidebar', type: 'docSidebar', label: 'BrillianIdeas', position: 'left'},
-        // {sidebarId: 'BrillianQuizSidebar', type: 'docSidebar', label: 'BrillianQuiz', position: 'left'},
-        // {sidebarId: 'BrillianCRMSidebar', type: 'docSidebar', label: 'BrillianCRM', position: 'left'},
-        // {sidebarId: 'BrillianICMSidebar', type: 'docSidebar', label: 'BrillianICM', position: 'left'},
-        // {sidebarId: 'IMBITN3xtSidebar', type: 'docSidebar', label: 'IMBIT-N3xt', position: 'left'},
-        {sidebarId: 'mySidebar', type: 'docSidebar', label: 'General IT', position: 'left'},
-        {sidebarId: 'mySidebar', type: 'docSidebar', label: 'BrillianIdeas', position: 'left'},
-        {sidebarId: 'mySidebar', type: 'docSidebar', label: 'BrillianQuiz', position: 'left'},
-        {sidebarId: 'mySidebar', type: 'docSidebar', label: 'BrillianCRM', position: 'left'},
-        {sidebarId: 'mySidebar', type: 'docSidebar', label: 'BrillianICM', position: 'left'},
-        {sidebarId: 'mySidebar', type: 'docSidebar', label: 'IMBIT-N3xt', position: 'left'},
+          {
+            to: 'docs/category/general-it',
+            label: 'General IT',
+            position: 'left',
+          },
+          {
+            to: 'docs/category/brillianideas',
+            label: 'BrillianIdeas',
+            position: 'left',
+          },
+          {
+            to: 'docs/category/brillianquiz',
+            label: 'BrillianQuiz',
+            position: 'left',
+          },
+          {
+            to: 'docs/category/brilliancrm',
+            label: 'BrillianCRM',
+            position: 'left',
+          },
+          {
+            to: 'docs/category/brillianicm',
+            label: 'BrillianICM',
+            position: 'left',
+          },
+          {
+            to: 'docs/category/imbit-n3xt',
+            label: 'IMBIT-N3xt',
+            position: 'left',
+          },
       ],
     },
     footer: {
@@ -89,27 +110,27 @@ const config: Config = {
           items: [
             {
               label: 'General IT',
-              to: '/docs/general_IT/',
+              to: '/docs/category/general_IT/',
             },
             {
               label: 'BrillianIdeas',
-              to: '/docs/brillianideas/',
+              to: '/docs/category/brillianideas/',
             },
             {
               label: 'BrillianQuiz',
-              to: '/docs/brillianquiz/',
+              to: '/docs/category/brillianquiz/',
             },
             {
               label: 'BrillianCRM',
-              to: '/docs/brilliancrm/',
+              to: '/docs/category/brilliancrm/',
             },
             {
               label: 'BrillianICM',
-              to: '/docs/brillianicm/',
+              to: '/docs/category/brillianicm/',
             },
             {
               label: 'IMBIT-N3xt',
-              to: '/docs/imbit-n3xt/',
+              to: '/docs/category/imbit-n3xt/',
             },
           ],
         },
@@ -143,11 +164,15 @@ const config: Config = {
           ],
         },
         {
-          title: 'Other Links',
+          title: 'Helpful Links',
           items: [
             {
               label: 'AWS Console',
               href: 'https://console.aws.amazon.com/console/home?nc2=h_ct&src=header-signin',
+            },
+            {
+              label: 'Bitwarden',
+              href: 'https://bitwarden.com',
             },
             {
               label: 'GitHub Organization',

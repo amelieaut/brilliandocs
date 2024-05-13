@@ -3,25 +3,66 @@ id: credentials
 title: Source Code and Credentials
 ---
 
-## Source Code Access
+## Joining the IMBIT GitHub Organization
 
-To access the source code, you'll need to join the ranks of the [IMBIT-Mannheim](https://github.com/IMBIT-Mannheim). It is home to all current applications and it is imperative that we continue to uphold this for all future projects.
+Accessing the source code for all your project needs is a breeze when you're part of the [IMBIT-Mannheim GitHub Organization](https://github.com/IMBIT-Mannheim). As guardians of our digital repository, it's crucial that we maintain this collective spirit for all ongoing and future initiatives.
 
-Should you wish to join into the organization, please extend your request to our designated contact listed at the bottom of this page.
+If you're ready to contribute and need access, simply send a join request to our designated contact—you'll find their details at the end of this section.
 
-## Passwords
+## Managing Digital Credentials with Bitwarden
 
-The realm of IMBIT is not only built on code but also on credentials. In our quest for a more accessible credentials, we have transitioned from Keepass to the online vault of [Bitwarden](https://bitwarden.com). This digital vault can be accessed through any web portal, ensuring that you, can retrieve the needed secrets without the confines of a single device.
+In the quest for seamless access to all our digital resources, credentials are key. We've chosen [Bitwarden](https://bitwarden.com), a user-friendly online vault, to simplify your experience.
 
-You'll find the credentials to the Bitwarden account placed within the GitHub repository, or they can be requested directly through the people below.
+You can access Bitwarden from any device with internet connectivity, giving you the freedom to retrieve necessary passwords at your convenience.
+
+### Obtaining Bitwarden Credentials
+
+To find the Bitwarden account credentials:
+
+- Check the GitHub repository—they should be documented there.
+- Alternatively, directly request them from the individuals listed in the contact table at the bottom of this page.
+
+:::caution
+Remember to handle all credentials with care and never share them outside of authorized channels.
+:::
+
+## Reaching Out for Access
+
+If you're uncertain about how to proceed or whom to contact for access, follow these steps:
+
+1. Ask the Studiengangsleitung (head of the degree program) for the name of the last person responsible for the resources you're interested in.
+2. Contact that individual to obtain both Bitwarden credentials and a GitHub invitation.
+3. In case you hit a dead end, don't worry—the contacts below can help you out.
+
+Feel free to add your details to this list to make it easier for future students to connect and collaborate.
 
 ## Contact List
 
-To gain access, we recommend inquiring with the Studiengangsleitung for the last individual who had access, and approach them to obtain the Bitwarden credentials and a GitHub invitation. If the trail runs cold and no contact is known, do not hesitate to reach out to one of the contacts listed below. Also, consider adding your details to the list to streamline future endeavors.
+If you need further assistance or access to specific resources, feel free to reach out to our helpful peers:
 
-| Name            | Email              | Course     |
-|-----------------|--------------------|------------|
-| Fabio Sauna     | dhbw@sauna.re ###     | IMBIT21B   |
-| Niklas Kusenbach| blabl@sauna.re ###     | IMBIT21B   |
-| Lukas Peerenbom | blib@blob.com ###     | IMBIT21B   |
-
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Course</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Fabio Sauna</td>
+        <td><a href="mailto:dhbw@sauna.re">dhbw@sauna.re###</a></td>
+        <td>IMBIT21B</td>
+      </tr>
+      <tr>
+        <td>Niklas Kusenbach</td>
+        <td><a href="mailto:blabl@sauna.re">blabl@sauna.re###</a></td>
+        <td>IMBIT21B</td>
+      </tr>
+      <tr>
+        <td>Lukas Peerenbom</td>
+        <td><a href="mailto:blib@blob.com">blib@blob.com###</a></td>
+        <td>IMBIT21B</td>
+      </tr>
+    </tbody>
+  </table>

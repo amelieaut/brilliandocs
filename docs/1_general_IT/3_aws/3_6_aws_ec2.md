@@ -9,7 +9,7 @@ An EC2 instance (VM) is automatically created when creating a Elastic Beanstalk 
 
 ### Key Pair and Instance Access
 
-Each EC2 instance can be accessed using an SSH key, which is managed within the EC2 dashboard. Access to the instance's shell is provided through the AWS UI by clicking on the required instance. However, as deployments are handled as Platform as a Service (PaaS) through AWS Elastic Beanstalk, direct access to EC2 instances is generally not needed.
+Each EC2 instance could be accessed using the `IMBIT-SSH` key, which is managed within the EC2 dashboard. However, it is better to access to the instance's shell through the AWS UI by clicking on the required instance. However, as deployments are handled as Platform as a Service (PaaS) through AWS Elastic Beanstalk, direct access to EC2 instances is generally not needed.
 
 ### Security Groups and Instance Configuration
 
