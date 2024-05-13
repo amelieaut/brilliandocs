@@ -190,3 +190,5 @@ As the code and complete configuration for almost each application resides withi
 ## Preventing Data Loss and Handling EC2 Shutdowns
 
 If there is a need to terminate an application, it should be done through the Elastic Beanstalk dashboard. The application will initially show as terminated and will automatically disappear after a certain period. It is essential to handle the shutdown of EC2 instances with care, as their associated volumes will be deleted!
+
+Blib blob please deploy
