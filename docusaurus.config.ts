@@ -59,7 +59,7 @@ const config: Config = {
       appId: process.env.ALGOLIA_APP_ID,
       apiKey: process.env.ALGOLIA_API_KEY,
       indexName: 'brillianideas',
-      contextualSearch: true,
+      contextualSearch: false, // Set to true when translation or versioning is enabled. Index of Algolia needs to be redone in that case.
     },
     // Replace with your project's social card
     docs: {
