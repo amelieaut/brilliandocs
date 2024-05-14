@@ -58,7 +58,9 @@ const config: Config = {
       ({
         hashed: true,
         indexBlog: false,
-        searchResultLimits: 15,
+        removeDefaultStemmer: true,
+        searchResultLimits: 8,
+        highlightSearchTermsOnTargetPage: true,
       }),
     ],
   ],
