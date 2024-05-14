@@ -1,16 +1,11 @@
 import {themes as prismThemes} from 'prism-react-renderer';
 import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
-import dotenv from 'dotenv';
-
-dotenv.config();
 
 const config: Config = {
   title: 'BrillianDocs',
   tagline: 'IMBIT-Mannheim IT Documentation',
   favicon: 'img/favicon.ico',
-
-  // Set the production url of your site here
   url: 'https://docs.brillianideas.com',
   baseUrl: '/',
   projectName: 'brilliandocs',
@@ -20,9 +15,6 @@ const config: Config = {
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
 
-  // Even if you don't use internationalization, you can use this field to set
-  // useful metadata like html lang. For example, if your site is Chinese, you
-  // may want to replace "en" with "zh-Hans".
   i18n: {
     defaultLocale: 'en',
     locales: ['en'],
@@ -39,8 +31,6 @@ const config: Config = {
         },
         blog: {
           showReadingTime: true,
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
           editUrl:
             'https://github.com/IMBIT-Mannheim/brilliandocs/tree/main/',
         },
@@ -66,14 +56,6 @@ const config: Config = {
   ],
 
   themeConfig: {
-    // Requested from https://docsearch.algolia.com/apply/
-    // algolia: {
-    //   appId: process.env.ALGOLIA_APP_ID,
-    //   apiKey: process.env.ALGOLIA_API_KEY,
-    //   indexName: 'brillianideas',
-    //   contextualSearch: false, // Set to true when translation or versioning is enabled. Index of Algolia needs to be redone in that case.
-    // },
-    // Replace with your project's social card
     docs: {
       sidebar: {
         autoCollapseCategories: true,
