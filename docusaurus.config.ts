@@ -51,16 +51,26 @@ const config: Config = {
     ],
   ],
 
-
+  themes: [
+    [
+      require.resolve("@easyops-cn/docusaurus-search-local"),
+      /** @type {import("@easyops-cn/docusaurus-search-local").PluginOptions} */
+      ({
+        hashed: true,
+        indexBlog: false,
+        searchResultLimits: 15,
+      }),
+    ],
+  ],
 
   themeConfig: {
     // Requested from https://docsearch.algolia.com/apply/
-    algolia: {
-      appId: process.env.ALGOLIA_APP_ID,
-      apiKey: process.env.ALGOLIA_API_KEY,
-      indexName: 'brillianideas',
-      contextualSearch: false, // Set to true when translation or versioning is enabled. Index of Algolia needs to be redone in that case.
-    },
+    // algolia: {
+    //   appId: process.env.ALGOLIA_APP_ID,
+    //   apiKey: process.env.ALGOLIA_API_KEY,
+    //   indexName: 'brillianideas',
+    //   contextualSearch: false, // Set to true when translation or versioning is enabled. Index of Algolia needs to be redone in that case.
+    // },
     // Replace with your project's social card
     docs: {
       sidebar: {
