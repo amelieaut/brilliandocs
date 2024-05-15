@@ -25,14 +25,13 @@ const config: Config = {
       'classic',
       {
         docs: {
+          routeBasePath: '/',
           sidebarPath: './sidebars.ts',
-          editUrl:
-            'https://github.com/IMBIT-Mannheim/brilliandocs/tree/main/',
+          editUrl: 'https://github.com/IMBIT-Mannheim/brilliandocs/tree/main/',
         },
         blog: {
           showReadingTime: true,
-          editUrl:
-            'https://github.com/IMBIT-Mannheim/brilliandocs/tree/main/',
+          editUrl: 'https://github.com/IMBIT-Mannheim/brilliandocs/tree/main/',
         },
         theme: {
           customCss: './src/css/custom.css',
@@ -70,32 +69,32 @@ const config: Config = {
       },
       items: [
           {
-            to: 'docs/category/general-it',
+            to: 'general-it',
             label: 'General IT',
             position: 'left',
           },
           {
-            to: 'docs/category/brillianideas',
+            to: 'brillianideas',
             label: 'BrillianIdeas',
             position: 'left',
           },
           {
-            to: 'docs/category/brillianquiz',
+            to: 'brillianquiz',
             label: 'BrillianQuiz',
             position: 'left',
           },
           {
-            to: 'docs/category/brilliancrm',
+            to: 'brilliancrm',
             label: 'BrillianCRM',
             position: 'left',
           },
           {
-            to: 'docs/category/brillianicm',
+            to: 'brillianicm',
             label: 'BrillianICM',
             position: 'left',
           },
           {
-            to: 'docs/category/imbit-n3xt',
+            to: 'imbit-n3xt',
             label: 'IMBIT-N3xt',
             position: 'left',
           },
@@ -109,27 +108,27 @@ const config: Config = {
           items: [
             {
               label: 'General IT',
-              to: '/docs/category/general-it/',
+              to: 'general-it/',
             },
             {
               label: 'BrillianIdeas',
-              to: '/docs/category/brillianideas/',
+              to: 'brillianideas/',
             },
             {
               label: 'BrillianQuiz',
-              to: '/docs/category/brillianquiz/',
+              to: 'brillianquiz/',
             },
             {
               label: 'BrillianCRM',
-              to: '/docs/category/brilliancrm/',
+              to: 'brilliancrm/',
             },
             {
               label: 'BrillianICM',
-              to: '/docs/category/brillianicm/',
+              to: 'brillianicm/',
             },
             {
               label: 'IMBIT-N3xt',
-              to: '/docs/category/imbit-n3xt/',
+              to: 'imbit-n3xt/',
             },
           ],
         },
