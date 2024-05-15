@@ -1,9 +1,0 @@
-{
-  "label": "Amazon Web Services (AWS)",
-  "position": 3,
-  "link": {
-    "type": "generated-index",
-    "description": "Welcome to the General IT documentation!",
-    "slug": "general-it/aws"
-  }
-}
