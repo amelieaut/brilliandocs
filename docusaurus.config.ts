@@ -48,6 +48,7 @@ const config: Config = {
       require.resolve("@easyops-cn/docusaurus-search-local"),
       /** @type {import("@easyops-cn/docusaurus-search-local").PluginOptions} */
       ({
+        docsRouteBasePath: '/',
         hashed: true,
         indexBlog: false,
         removeDefaultStemmer: true,
@@ -110,8 +111,18 @@ const config: Config = {
             position: 'left',
           },
           {
+            to: 'brilliandocs',
+            label: 'BrillianDocs',
+            position: 'left',
+          },
+          {
             to: 'imbit-n3xt',
             label: 'IMBIT-N3xt',
+            position: 'left',
+          },
+          {
+            to: 'other',
+            label: 'Other',
             position: 'left',
           },
       ],
@@ -193,7 +204,7 @@ const config: Config = {
               href: 'https://github.com/IMBIT-Mannheim',
             },
             {
-              label: 'Source Code',
+              label: 'BrillianDocs Repository',
               href: 'https://github.com/IMBIT-Mannheim/brilliandocs',
             },
             {
@@ -207,7 +218,8 @@ const config: Config = {
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} BrillianDocs. Built by IMBIT21B with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} BrillianDocs. Built by IMBIT21B with
+      <a href="https://docusaurus.io/" target="_blank" rel="noopener noreferrer">Docusaurus</a>.`,
     },
     prism: {
       theme: prismThemes.github,
