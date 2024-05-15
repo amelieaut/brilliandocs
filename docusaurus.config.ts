@@ -1,6 +1,7 @@
 import {themes as prismThemes} from 'prism-react-renderer';
 import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
+import imageZoom from 'docusaurus-plugin-image-zoom';
 
 const config: Config = {
   title: 'BrillianDocs',
@@ -28,6 +29,8 @@ const config: Config = {
           routeBasePath: '/',
           sidebarPath: './sidebars.ts',
           editUrl: 'https://github.com/IMBIT-Mannheim/brilliandocs/tree/main/',
+          showLastUpdateTime: true,
+          showLastUpdateAuthor: true,
         },
         blog: {
           showReadingTime: true,
@@ -54,11 +57,24 @@ const config: Config = {
     ],
   ],
 
+  plugins: [require.resolve("docusaurus-plugin-image-zoom")],
+
+
   themeConfig: {
     docs: {
       sidebar: {
         autoCollapseCategories: true,
+        hideable: true,
       },
+    },
+    zoom: {
+      selector: '.markdown :not(em) > img',
+      config: {
+        background: {
+          light: 'rgb(255, 255, 255)',
+          dark: 'rgb(50, 50, 50)'
+        }
+      }
     },
     image: 'img/docusaurus-social-card.jpg',
     navbar: {
