@@ -1,0 +1,41 @@
+---
+id: instance
+title: Instance Management
+---
+
+:::danger EC2 Instance and Volume Deletion
+Be careful when shutting down EC2 instances. Their storage volumes will also be removed, which will cause data loss! Read more about [data loss potential](data#data-loss-potential).
+:::
+
+## Shell Access and SSH Key
+
+You usually don't need direct VM access because of the PaaS nature of Elastic Beanstalk, however you can access your EC2 instances within the AWS EC2 Dashboard. 
+
+
+- **Key Name**: `IMBIT-SSH`.
+- **Managed Under**: EC2 dashboard.
+- **VM's Console Access**: Recommended via the AWS UI by selecting the desired instance.
+
+
+## Security Groups and Traffic Rules
+
+### Virtual Firewalls
+
+Security groups in EC2 serve as virtual firewalls that dictate inbound and outbound traffic rules for instances.
+
+- **Instance-Specific Groups**: Auto-generated when deploying the Beanstalk application with the suffix `-env`.
+- **General IMBIT Group**: The `IMBIT-SecurityGroup` allows all HTTP and HTTPS traffic across both IPv4 and IPv6.
+
+### Enabling External SSH Access
+
+If SSH access from outside AWS is required, it must be explicitly added within the `IMBIT-SecurityGroup` rules.
+
+
+:::danger Modifying Security Groups
+Changing security groups for EC2 instances, will result in data loss as AWS will create complete new EC2 instances! Instead adjust the `IMBIT-SecurityGroup` rules. Read more about [data loss potential](data#data-loss-potential).
+:::
+
+
+## Volumes and Scaling
+- **Storage**: Volumes are provisioned with 8GB by default, 100 IOPS, and come as General Purpose SSDs (gp2).
+- **Auto Scaling Groups**: Elastic Beanstalk creates automatically scaling groups for each application. The default setting is a single instance.

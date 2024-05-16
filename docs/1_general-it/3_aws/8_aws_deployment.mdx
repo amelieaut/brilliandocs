@@ -1,0 +1,22 @@
+---
+id: deployment
+title: Continuous Deployment
+---
+
+Each application has an automated deployment pipeline. This is a GitHub Action in the application's repository found in `.github/workflows/deploy-AWS.yml`. The pipeline is triggered when commits are pushed to the `main` branch.
+
+## Key Steps of the Workflow:
+
+1. **Build Process**:
+   The workflow initiates by building Docker images based on the Dockerfile(s) present in the repository.
+
+2. **Image Registry**:
+   Once the Docker images are built, they are pushed to the GitHub Container Registry, which is cheaper than hosting them on AWS.
+
+3. **Elastic Beanstalk Deployment**:
+   In the final step, the images are deployed to the specified AWS Elastic Beanstalk environment.
+
+:::caution In case of deployment failure:
+- All GitHub packages are private by default. Set them to public after the initial release. For more, see [GitHub's documentation](https://docs.github.com/en/packages/learn-github-packages/configuring-a-packages-access-control-and-visibility).
+- Maintain the application and environment names the same in the GitHub workflow and Elastic Beanstalk configuration!
+:::

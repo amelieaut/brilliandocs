@@ -77,7 +77,6 @@ const config: Config = {
         }
       }
     },
-    image: 'img/docusaurus-social-card.jpg',
     navbar: {
       title: 'BrillianDocs',
       logo: {
