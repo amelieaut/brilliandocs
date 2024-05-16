@@ -83,48 +83,6 @@ const config: Config = {
         alt: 'BrillianDocs Logo',
         src: 'img/logo.svg',
       },
-      items: [
-          {
-            to: 'general-it',
-            label: 'General IT',
-            position: 'left',
-          },
-          {
-            to: 'brillianideas',
-            label: 'BrillianIdeas',
-            position: 'left',
-          },
-          {
-            to: 'brillianquiz',
-            label: 'BrillianQuiz',
-            position: 'left',
-          },
-          {
-            to: 'brilliancrm',
-            label: 'BrillianCRM',
-            position: 'left',
-          },
-          {
-            to: 'brillianicm',
-            label: 'BrillianICM',
-            position: 'left',
-          },
-          {
-            to: 'brilliandocs',
-            label: 'BrillianDocs',
-            position: 'left',
-          },
-          {
-            to: 'imbit-n3xt',
-            label: 'IMBIT-N3xt',
-            position: 'left',
-          },
-          {
-            to: 'other',
-            label: 'Other',
-            position: 'left',
-          },
-      ],
     },
     footer: {
       style: 'dark',
