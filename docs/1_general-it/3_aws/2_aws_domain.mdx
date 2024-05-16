@@ -8,23 +8,20 @@ import TabItem from '@theme/TabItem';
 
 ## Domains and DNS Configuration
 
-Organizing your domains and DNS settings is crucial for a seamless network experience. Below is a quick reference table with all our domains. Further down, you will find detailed DNS configurations for each domain organized in tabs.
+Below is a quick reference table for all our domains, which are registered and managed by AWS Route 53.
 
 ### Domain List
 
-Here's an overview of our domains:
-
-| Domain          | URL                           |
+| Applications     | Domain                        |
 |-----------------|-------------------------------|
-| BrillianIdeas   | [brillianideas.com](https://brillianideas.com)   |
+| BrillianIdeas, BrillianDocs, Wordpress Page, AWS SES  | [brillianideas.com](https://brillianideas.com)   |
 | BrillianQuiz    | [brillianquiz.com](https://brillianquiz.com)     |
 | BrillianCRM     | [brilliancrm.com](https://brilliancrm.com)       |
 | BrillianICM     | [brillianicm.com](https://brillianicm.com)       |
 | IMBIT-N3xt      | [imbit-n3xt.com](https://imbit-n3xt.com)         |
+| Unused | [digital-learning-imbit.com](https://digital-learning-imbit.com) |
 
 ### DNS Settings by Domain
-
-Expand the tabs below to view DNS settings for each domain:
 
 <Tabs
   defaultValue="brillianideas"
@@ -133,13 +130,9 @@ Needs Updating äää!
 </Tabs>
 
 
+## Networking Setup
 
-
-
-
-## Networking Setup (in VPC Dashboard)
-
-In our VPC Dashboard, we've structured the network to be both secure and efficient. Take a look at our subnet layout:
+The AWS networking is handled in the VPC Dashboard. A new VPC, called `IMBIT-VPC`, was created with a /24 subnet for each application.
 
 ### Subnets Overview
 
@@ -155,7 +148,5 @@ In our VPC Dashboard, we've structured the network to be both secure and efficie
 
 
 ### Visual Overview
-
-For a visual reference of our VPC setup, refer to the collapsible section below:
 
 ![IMBIT-VPC Overview](vpc.png)

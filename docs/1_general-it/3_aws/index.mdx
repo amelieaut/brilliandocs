@@ -4,13 +4,12 @@ title: Amazon Web Services (AWS)
 ---
 
 :::note
-AWS is vast, and its decentralized nature means there isn't one "main dashboard". Understanding the AWS lingo and regional service distribution is key for effective management. Let's shed some light on it together!
+AWS is vast, and its decentralized nature means there isn't one "main dashboard". Understanding the AWS lingo and regional service distribution is key for effective management.
 :::
 
+## AWS Services
 
-## Navigating AWS Services
-
-Think of AWS like a toolbox; each tool has its purpose and can be managed via the [AWS Console](https://console.aws.amazon.com/console/home?nc2=h_ct&src=header-signin). Here's a quick reference to the AWS services we're using at IMBIT, along with a brief description of what each one does:
+Think of AWS like a toolbox; each tool has its purpose and can be managed via the [AWS Console](https://console.aws.amazon.com/console/home?nc2=h_ct&src=header-signin). Here is a quick reference to the AWS services we are using, along with a brief description of what each one does:
 
 | AWS Service                           | Description                                                                                                       |
 |---------------------------------------|-------------------------------------------------------------------------------------------------------------------|
@@ -24,14 +23,12 @@ Think of AWS like a toolbox; each tool has its purpose and can be managed via th
 | Amazon SES (Simple Email Service)     | A cloud-based email sending service.                                                                              |
 | Amazon IAM (Identity and Access Management) | A service that enables you to manage user account access to AWS services.                                   |
 
-
-
 ## Regions
 :::warning IMPORTANT: AWS Region Management
-Please be aware that the resources must be managed in their designated regions as noted in the tables above. You will need to switch to the appropriate region within the AWS Management Console to configure or manage these resources. Failing to do so may result in the inability to locate or modify the services correctly.
+Resources must be managed in their designated regions. Switch to the appropriate region in the AWS Management Console to configure or manage them. Otherwise, you won't be able to modify the services correctly.
 :::
 
-AWS resources are hosted across different geographical regions. As of 2024, we utilize the following regional structure:
+As of 2024, we utilize the following regional structure:
 
 | Location       | Region Code | Note                                                                             |
 |----------------|-------------|----------------------------------------------------------------------------------|
@@ -40,9 +37,7 @@ AWS resources are hosted across different geographical regions. As of 2024, we u
 | **North Virginia** | us-east-1   | For CloudFront and Certificate Manager (region required by AWS).             |
 | **Global**     | N/A         | Route 53 and IAM are not bound by regional constraints and operate globally.     |
 
-
-  Hello
-
+## AWS Guides
 ```mdx-code-block
 import DocCardList from '@theme/DocCardList';
 

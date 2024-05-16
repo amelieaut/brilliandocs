@@ -1,6 +1,6 @@
 ---
-id: beanstalk
-title: Deploying Applications
+id: apps
+title: Application Management
 ---
 ## Elastic Beanstalk for Application Deployment
 
@@ -59,3 +59,11 @@ AWS CloudFront acts as a reverse proxy and one deployment is needed per Beanstal
 - **CloudFront and Route 53 Integration**: Once the CloudFront distribution is created and active, the CloudFront domain name is entered into Route 53 as an alias record, which connects the custom domain to the CloudFront distribution, completing the setup process.
 
 ![Cloudfront Setup](cloudfront.png)
+
+
+## Removing an Application
+- **Termination Process**: Initiate through the Elastic Beanstalk dashboard.
+- **Post-Termination**: The application status will update to `beendet` and will be automatically removed after some time.
+- Cloudfront deletion äää
+
+DATA LOSS NOTICE WHEN STOPPING APPLICATION 
