@@ -19,7 +19,7 @@ To sign in to the mailbox, visit the [AWS WorkMail portal](https://brillianideas
 - **Current User**: `no-reply@mail.brillianideas.com`
 
 :::caution Organization Management
-Maintain a **single organization** within WorkMail to keep billing in check. AWS charges per user/month, so consolidating users is key to cost-efficiency.
+Maintain a **single organization and mailbox** within WorkMail to keep billing in check. AWS charges per user/month, so consolidating users is key to cost-efficiency.
 :::
 
 ## AWS Simple Email Service (SES) Setup
@@ -46,7 +46,7 @@ Two critical AWS SES rulesets are necessary to receive emails correctly:
 
 ## SMTP Credentials and Sending Settings
 
-An SMTP user, created via [AWS IAM](/general-it/aws/iam#ses-smtp-user). The settings for sending mail are typically:
+An SMTP user, created via [AWS IAM](/general-it/aws/iam#1-ses-smtp-user). The settings for sending mail are typically:
 
 - **Port**: 587 (Secure, with TLS)
 - **Server**: email-smtp.eu-west-1.amazonaws.com
