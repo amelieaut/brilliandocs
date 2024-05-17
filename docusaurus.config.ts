@@ -32,10 +32,6 @@ const config: Config = {
           showLastUpdateTime: true,
           showLastUpdateAuthor: true,
         },
-        blog: {
-          showReadingTime: true,
-          editUrl: 'https://github.com/IMBIT-Mannheim/brilliandocs/tree/main/',
-        },
         theme: {
           customCss: './src/css/custom.css',
         },
