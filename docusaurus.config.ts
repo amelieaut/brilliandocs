@@ -4,7 +4,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 import imageZoom from 'docusaurus-plugin-image-zoom';
 
 const config: Config = {
-  title: 'BrillianDocs',
+  title: 'BrillianDOCS',
   tagline: 'IMBIT-Mannheim IT Documentation',
   favicon: 'img/favicon.ico',
   url: 'https://docs.brillianideas.com',
@@ -78,9 +78,9 @@ const config: Config = {
       }
     },
     navbar: {
-      title: 'BrillianDocs',
+      title: 'BrillianDOCS',
       logo: {
-        alt: 'BrillianDocs Logo',
+        alt: 'BrillianDOCS Logo',
         src: 'img/logo.svg',
       },
     },
@@ -95,11 +95,11 @@ const config: Config = {
               to: 'general-it/',
             },
             {
-              label: 'BrillianIdeas',
+              label: 'BrillianIDEAS',
               to: 'brillianideas/',
             },
             {
-              label: 'BrillianQuiz',
+              label: 'BrillianQUIZ',
               to: 'brillianquiz/',
             },
             {
@@ -111,7 +111,7 @@ const config: Config = {
               to: 'brillianicm/',
             },
             {
-              label: 'IMBIT-N3xt',
+              label: 'IMBIT-N3XT',
               to: 'imbit-n3xt/',
             },
           ],
@@ -124,11 +124,11 @@ const config: Config = {
               href: 'https://www.spatial.io/s/IMBIT-Expo-636a219beea9af00012a5956?share=324222080615529969',
             },
             {
-              label: 'BrillianIdeas',
+              label: 'BrillianIDEAS',
               href: 'https://brillianideas.com',
             },
             {
-              label: 'BrillianQuiz',
+              label: 'BrillianQUIZ',
               href: 'https://brillianquiz.com',
             },
             {
@@ -140,7 +140,7 @@ const config: Config = {
               href: 'https://brillianicm.com',
             },
             {
-              label: 'IMBIT-N3xt',
+              label: 'IMBIT-N3XT',
               href: 'https://imbit-n3xt.com',
             },
           ],
@@ -161,7 +161,7 @@ const config: Config = {
               href: 'https://github.com/IMBIT-Mannheim',
             },
             {
-              label: 'BrillianDocs Repository',
+              label: 'BrillianDOCS Repository',
               href: 'https://github.com/IMBIT-Mannheim/brilliandocs',
             },
             {
@@ -175,7 +175,7 @@ const config: Config = {
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} BrillianDocs. Built by IMBIT21B with
+      copyright: `Copyright © ${new Date().getFullYear()} BrillianDOCS. Built by IMBIT21B with
       <a href="https://docusaurus.io/" target="_blank" rel="noopener noreferrer">Docusaurus</a>.`,
     },
     prism: {

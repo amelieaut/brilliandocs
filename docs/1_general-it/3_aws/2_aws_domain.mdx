@@ -14,11 +14,11 @@ Below is a quick reference table for all our domains, which are registered and m
 
 | Applications     | Domain                        |
 |-----------------|-------------------------------|
-| BrillianIdeas, BrillianDocs, Wordpress Page, AWS SES  | [brillianideas.com](https://brillianideas.com)   |
-| BrillianQuiz    | [brillianquiz.com](https://brillianquiz.com)     |
+| BrillianIDEAS, BrillianDOCS, Wordpress Page, AWS SES  | [brillianideas.com](https://brillianideas.com)   |
+| BrillianQUIZ    | [brillianquiz.com](https://brillianquiz.com)     |
 | BrillianCRM     | [brilliancrm.com](https://brilliancrm.com)       |
 | BrillianICM     | [brillianicm.com](https://brillianicm.com)       |
-| IMBIT-N3xt      | [imbit-n3xt.com](https://imbit-n3xt.com)         |
+| IMBIT-N3XT      | [imbit-n3xt.com](https://imbit-n3xt.com)         |
 | Unused | [digital-learning-imbit.com](https://digital-learning-imbit.com) |
 
 ### DNS Settings by Domain
@@ -26,11 +26,11 @@ Below is a quick reference table for all our domains, which are registered and m
 <Tabs
   defaultValue="brillianideas"
   values={[
-    { label: 'BrillianIdeas', value: 'brillianideas' },
-    { label: 'BrillianQuiz', value: 'brillianquiz' },
+    { label: 'BrillianIDEAS', value: 'brillianideas' },
+    { label: 'BrillianQUIZ', value: 'brillianquiz' },
     { label: 'BrillianCRM', value: 'brilliancrm' },
     { label: 'BrillianICM', value: 'brillianicm' },
-    { label: 'IMBIT-N3xt', value: 'imbit-n3xt' },
+    { label: 'IMBIT-N3XT', value: 'imbit-n3xt' },
   ]}>
 
 <TabItem value="brillianideas">
@@ -38,7 +38,7 @@ Needs Updating äää!
 | Name                                                             | Type  | Alias | Value                                               | Notes                                        |
 |------------------------------------------------------------------|-------|-------|-----------------------------------------------------|----------------------------------------------|
 | brillianideas.com                                                | A     | Yes   | d1py45h4yu2kpc.cloudfront.net.                      | Maps domain to the IP of the CloudFront distribution |
-| docs.brillianideas.com                                           | A     | Yes   | d24a7q0jdds7kb.cloudfront.net.                      | Maps subdomain to the IP of the CloudFront distribution for BrillianDocs |
+| docs.brillianideas.com                                           | A     | Yes   | d24a7q0jdds7kb.cloudfront.net.                      | Maps subdomain to the IP of the CloudFront distribution for BrillianDOCS |
 | imbit.brillianideas.com                                          | A     | No    | 3.66.131.100                                        | Maps subdomain to the IP address of the Wordpress page (actually managed through the Lightsail DNS!) |
 | www.brillianideas.com                                            | CNAME | No    | brillianideas.com                                   | Redirects www requests to root domain |
 | www.docs.brillianideas.com                                       | CNAME | No    | www.brillianideas.com                               | Redirects www requests to root domain |
@@ -142,9 +142,9 @@ The AWS networking is handled in the VPC Dashboard. A new VPC, called `IMBIT-VPC
 | Public-EU-CENTRAL-1b| subnet-0717fdb65b0a31b38  | 10.0.16.0/20    | eu-central-1b     |
 | BrillianCRM         | subnet-0439f43bf8fb29801  | 10.0.41.0/24    | eu-central-1b     |
 | BrillianICM         | subnet-050a30c1bfc623361  | 10.0.42.0/24    | eu-central-1b     |
-| BrillianIdeas       | subnet-0802987cab48623ee  | 10.0.43.0/24    | eu-central-1b     |
-| BrillianQuiz        | subnet-0fdb84aa269bb45b7  | 10.0.44.0/24    | eu-central-1a     |
-| IMBIT-N3xt          | subnet-01dbe3669b188c9de  | 10.0.45.0/24    | eu-central-1a     |
+| BrillianIDEAS       | subnet-0802987cab48623ee  | 10.0.43.0/24    | eu-central-1b     |
+| BrillianQUIZ        | subnet-0fdb84aa269bb45b7  | 10.0.44.0/24    | eu-central-1a     |
+| IMBIT-N3XT          | subnet-01dbe3669b188c9de  | 10.0.45.0/24    | eu-central-1a     |
 
 
 ### Visual Overview
