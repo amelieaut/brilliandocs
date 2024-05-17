@@ -91,28 +91,28 @@ const config: Config = {
           title: 'Docs',
           items: [
             {
-              label: 'General IT',
-              to: 'general-it/',
+              label: 'Amazon Web Services',
+              to: 'aws',
             },
             {
               label: 'BrillianIDEAS',
-              to: 'brillianideas/',
+              to: 'projects/brillianideas',
             },
             {
               label: 'BrillianQUIZ',
-              to: 'brillianquiz/',
+              to: 'projects/brillianquiz',
             },
             {
               label: 'BrillianCRM',
-              to: 'brilliancrm/',
+              to: 'projects/brilliancrm',
             },
             {
               label: 'BrillianICM',
-              to: 'brillianicm/',
+              to: 'projects/brillianicm',
             },
             {
               label: 'IMBIT-N3XT',
-              to: 'imbit-n3xt/',
+              to: 'projects/imbit-n3xt',
             },
           ],
         },
