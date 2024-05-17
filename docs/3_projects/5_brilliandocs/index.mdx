@@ -9,6 +9,11 @@ The BrillianDOCS repository is publicly accessible. Take special care not to inc
 
 BrillianDOCS was established as a unified wiki for the IMBIT degree program at DHBW Mannheim, serving as the go-to IT documentation resource. Leveraging the robust security and features of [Docusaurus v3.3.2 (Typescript Variant)](https://docusaurus.io/docs), BrillianDOCS employs a tech stack featuring Node.js, React, Webpack and Babel. It's worth noting that while Docusaurus is capable of hosting docs, static pages, and blogs, only the wiki functionality is currently utilized in BrillianDOCS.
 
+## Quick Sheet
+| Name      | URL           | Repository                  | Tech Stack | Database | CPU Platform | Hosting Location    |
+|-----------|---------------|----------------------------|------------|----------|--------------|------------|
+| BrillianDOCS | https://docs.brillianideas.com | https://github.com/imbit-mannheim/brilliandocs | Docusaurus, Node.js, React, Webpack, Babel | N/A  | N/A         | GitHub Pages |
+
 ## Contributing to BrillianDOCS
 When contributing content, you'll primarily be modifying MDX files within the `docs` directory. Follow these guidelines to maintain consistency:
 
@@ -64,7 +69,7 @@ Review the [Docusaurus Changelog](https://github.com/facebook/docusaurus/blob/ma
 1. **Check for outdated packages:**
 
    ```bash
-   npm outdated
+   ncu
    ```
 
 2. **Update the Docusaurus core packages:**
@@ -77,6 +82,11 @@ Review the [Docusaurus Changelog](https://github.com/facebook/docusaurus/blob/ma
 
    ```bash
    npm install @easyops-cn/docusaurus-search-local@latest docusaurus-plugin-image-zoom@latest
+   ```
+4. **Update everything else:**
+
+   ```bash
+   ncu -u
    ```
 
 ## Expanding Capabilities
