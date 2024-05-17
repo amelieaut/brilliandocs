@@ -1,11 +1,49 @@
 ---
 id: brillianideas
-title: BrillianIdeas
+title: BrillianIDEAS
 ---
 
+## Introduction
+The BrillianIDEAS platform, initiated as a project at DHBW Mannheim, serves as a resource for information pertaining to the IMBIT course program. Launched in 2017, it has undergone continuous development and refinement, reaching its current state in 2022.
+Additional historical context and details about the project's evolution can be found on the [Impressum page](/impressum).
 
-```mdx-code-block
-import DocCardList from '@theme/DocCardList';
 
-<DocCardList />
-```
+## Quick Sheet
+| Name      | URL           | Repository                  | Tech Stack | Database | CPU Platform | Hosting Location    |
+|-----------|---------------|----------------------------|------------|----------|--------------|------------|
+| BrillianIDEAS | https://brillianideas.com | https://github.com/imbit-mannheim/brillianideas | Apache, jQuery, jQuery Easy UI, jQuery Mobile | N/A  | ARM64         | AWS |
+
+
+## Features
+- **Server**: A combination of classic HTML enhanced with CSS and Javascrip,t hosted by Apache.
+- **Frontend Frameworks**: Integration of jQuery, jQuery Easy UI, and jQuery Mobile to construct the interface.
+- **Responsive Design**: Tailored to adapt seamlessly across a variety of screen sizes and devices.
+- **Interactivity**: Features dynamic components such as accordion menus and modal windows.
+- **Keyboard and Swipe Navigation**: Facilitates navigation through the content using keyboard arrow keys and swipe gestures.
+
+## Pages and Routes
+Most of the content is located in the `src/index.html` file, and newer content is located in the `src/content` folder.
+
+| Page                          | URL                                                       | Description                                               |
+|-------------------------------|-----------------------------------------------------------|-----------------------------------------------------------|
+| Home                          | [https://brillianideas.com/](https://brillianideas.com/) | Default view when opening the platform.                   |
+| Curriculum                    | [https://brillianideas.com/#curriculum](https://brillianideas.com/#curriculum) | Information about the curriculum of IMBIT studies.           |
+| Digital Learning              | [https://brillianideas.com/#digitallearning](https://brillianideas.com/#digitallearning) | Overview of digital learning opportunities and resources. |
+| Learning Videos               | [https://brillianideas.com/index.html#lernvideosBWL](https://brillianideas.com/index.html#lernvideosBWL) | Collection of learning videos on business economics topics.|
+| Impressum                     | [https://brillianideas.com/index.html#impressum](https://brillianideas.com/index.html#impressum) | Legal information and privacy policy.                     |
+| Wie dual bin?                 | [https://brillianideas.com/content/dual.html](https://brillianideas.com/content/dual.html) | Podcasts and videos about the studies and overview of dual partners. |
+| Selbsttest                    | [https://brillianideas.com/content/quiz.html](https://brillianideas.com/content/quiz.html) | Self-assessment to gauge how 'dual' you are.              |
+
+## Starting the Application
+Before initiating the platform, it is essential to consult the [Contributing Guide](/general-it/contributing) for best practices. Once the repository is cloned, execute `docker-compose up -d` to start the Apache container that launches BrillianIDEAS at [http://localhost:8080](http://localhost:8080).
+
+## Updating
+The absence of npm necessitates manual updates. Compounding this challenge is the end-of-life status of jQuery Mobile, whose final release was in October 2014, and its incompatibility with newer versions of jQuery. Instead of updating this application, it is advisable to consider a transition to a modern technology stack, such as done with [IMBIT-N3XT](imbit-n3xt).
+
+## Known Issues
+- The "Wie dual bin ich" page can not be navigated using the keyboard arrow keys or swipe gestures.
+- Given the age of the codebase, there is a heightened risk of unresolved security vulnerabilities (CVEs). It is recommended to isolate this application entirely to mitigate potential risks.
+
+## Pending Tasks
+- Evaluate the feasibility of migrating to GitHub Pages, which would require making the repository public. Prior to this, a thorough review is needed to ensure no sensitive information is disclosed.
+- Perform an update of the website content ALTERNATIVELY migrate more information to [IMBIT-N3XT](https://imbit-n3xt.com).
