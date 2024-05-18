@@ -1,6 +1,6 @@
 ---
 id: contributing
-title: Development Setup and Contributing Guide
+title: Contributing Guide
 ---
 
 ## Development Setup
@@ -14,7 +14,7 @@ After joining the GitHub organization, you'll need to clone the specific IMBIT a
 While AWS dev instances were previously used for testing, local development with Docker is now preferred due to its speed, cost efficiency, and simplicity.
 
 ## x86 and ARM64 Platform
-Our applications in AWS are x86 with the exception of BrillianIdeas (ARM64). Testing on ARM64 resulted in login issues with BrillianCRM, ICM, and Quiz that require proper debugging. Developers using Macs with M-series chips may experience compatibility issues in their local development environments.
+Our applications in AWS are x86 with the exception of BrillianIDEAS (ARM64). Testing on ARM64 resulted in login issues with BrillianCRM, ICM, and Quiz that require proper debugging. Developers using Macs with M-series chips may experience compatibility issues in their local development environments.
 
 ### Setting up Docker
 
@@ -24,7 +24,7 @@ Each repository comes equipped with:
 
 - **Dockerfiles**: These are scripts used by Docker to automatically build image files.
 - **docker-compose.yml**: A file that defines how Docker containers should be built, configured and run. The container images will be created using the Dockerfiles.
-- **docker-compose-AWS.yml**: For AWS deployment, instead of building the images from the Dockerfile, it pulls the images from the GitHub repository. See the [deployment page](aws/deployment) for more details.
+- **docker-compose-AWS.yml**: For AWS deployment, instead of building the images from the Dockerfile, it pulls the images from the GitHub repository. See the [deployment page](/aws/deployment) for more details.
 
 #### Docker Commands
 
@@ -56,13 +56,13 @@ docker compose -f docker-compose-AWS.yml up -d
 
 ### Alternative Setup Without Docker
 
-If for any reason you opt not to use Docker, ensure you have Node.js and npm installed for running BrilianQuiz, IMBIT-N3xt, and BrillianDocs. The typical command to start the applications is:
+If for any reason you opt not to use Docker, ensure you have Node.js and npm installed for running BrilianQuiz, IMBIT-N3XT, and BrillianDOCS. The typical command to start the applications is:
 
 ```shell
 npm start
 ```
 
-Applications like BrillianIdeas, BrillianCRM, and BrillianICM have been dockerized due to their more complex setups. However if you want to develop without Docker you will need Apache for BrillianIdeas, and for BrillianCRM/ICM you will requiere a more complex setup involving Java SDK, Tomcat, and Maven.
+Applications like BrillianIDEAS, BrillianCRM, and BrillianICM have been dockerized due to their more complex setups. However if you want to develop without Docker you will need Apache for BrillianIDEAS, and for BrillianCRM/ICM you will requiere a more complex setup involving Java SDK, Tomcat, and Maven.
 
 ## Contributing
 
@@ -74,7 +74,7 @@ When you're ready to contribute, create a new branch in the respective repositor
 
 ### Making a Pull Request (PR)
 
-After you've made your changes, push your branch, open a pull request and merge it against the main branch. This will trigger the Continuous Deployment (CD) Pipeline, which deploys to AWS (BrillianIdeas, BrillianQuiz, BrillianCRM/ICM, IMBIT-N3xt) or GitHub Pages (BrillianDocs).
+After you've made your changes, push your branch, open a pull request and merge it against the main branch. This will trigger the Continuous Deployment (CD) Pipeline, which deploys to AWS (BrillianIDEAS, BrillianQUIZ, BrillianCRM/ICM, IMBIT-N3XT) or GitHub Pages (BrillianDOCS).
 
 Once your contributions have been merged, feel free to delete your branches.
 

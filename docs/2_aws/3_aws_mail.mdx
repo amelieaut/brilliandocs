@@ -34,7 +34,7 @@ The following settings have been applied for proper Email sending:
 - **DMARC & DKIM**: Manual creation of the DMARC TXT setting and utilizing 2048-bit AWS managed DKIM keys.
 
 :::tip Email Deliverability Test
-Use [mail-tester.com](https://mail-tester.com) to check your email's spam score. BrillianQuiz scores 10/10, while BrillianCRM/ICM scores 8.5/10 due to short message lengths. To use Mail-Tester, enter the test email address as the recipient, for example, when registering a user in the Brilliant Apps.
+Use [mail-tester.com](https://mail-tester.com) to check your email's spam score. BrillianQUIZ scores 10/10, while BrillianCRM/ICM scores 8.5/10 due to short message lengths. To use Mail-Tester, enter the test email address as the recipient, for example, when registering a user in the Brilliant Apps.
 :::
 
 ### Receiving Emails
@@ -46,7 +46,7 @@ Two critical AWS SES rulesets are necessary to receive emails correctly:
 
 ## SMTP Credentials and Sending Settings
 
-An SMTP user, created via [AWS IAM](/general-it/aws/iam#1-ses-smtp-user). The settings for sending mail are typically:
+An SMTP user, created via [AWS IAM](iam#1-ses-smtp-user). The settings for sending mail are typically:
 
 - **Port**: 587 (Secure, with TLS)
 - **Server**: email-smtp.eu-west-1.amazonaws.com

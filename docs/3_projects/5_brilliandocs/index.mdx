@@ -1,0 +1,98 @@
+---
+id: brilliandocs
+title: BrillianDOCS
+---
+
+:::caution
+The BrillianDOCS repository is publicly accessible. Take special care not to include sensitive information.
+:::
+
+BrillianDOCS was established as a unified wiki for the IMBIT degree program at DHBW Mannheim, serving as the go-to IT documentation resource. Leveraging the robust security and features of [Docusaurus v3.3.2 (Typescript Variant)](https://docusaurus.io/docs), BrillianDOCS employs a tech stack featuring Node.js, React, Webpack and Babel. It's worth noting that while Docusaurus is capable of hosting docs, static pages, and blogs, only the wiki functionality is currently utilized in BrillianDOCS.
+
+## Quick Sheet
+| Name      | URL           | Repository                  | Tech Stack | Database | CPU Platform | Hosting Location    |
+|-----------|---------------|----------------------------|------------|----------|--------------|------------|
+| BrillianDOCS | https://docs.brillianideas.com | https://github.com/imbit-mannheim/brilliandocs | Docusaurus, Node.js, React, Webpack, Babel | N/A  | N/A         | GitHub Pages |
+
+## Contributing to BrillianDOCS
+When contributing content, you'll primarily be modifying MDX files within the `docs` directory. Follow these guidelines to maintain consistency:
+
+### Adding New Content
+- **Chapters**: To introduce a new chapter, create a folder in the `docs` directory using the format `number_title` (e.g., `2_aws`). Ensure the numbering is sequential as the sorting happens alphabetically.
+- **Knowledge Items**: To create a new knowledge item, place a new .mdx file in a category folder and apply the same naming convention as done for chapters.
+- **Category Pages**: To generate a category page (e.g. [Getting Started](/getting-started)), name the file `index.mdx`. This allows you to leverage the `DocCardList` component to display a list of documents in that category.
+
+### Markdown and MDX
+For guidance on writing Markdown and MDX, reference the [Docusaurus Markdown Features](https://docusaurus.io/docs/markdown-features) guide. Alternatively, ask ChatGPT for assistance with MDX syntax.
+
+### Document Header Configuration
+Each MDX file begins with a header that determines the document's URL (`id`) and title (`title`).
+
+In this example the URL would be `iam` and the title of the knowledge item `Identities and Accounts`:
+```markdown
+---
+id: iam
+title: Identities and Accounts
+---
+```
+
+### Hyperlinking
+To link to internal content within BrillianDOCS:
+
+- **Relative Links**: Use standard Markdown syntax without a leading slash to link relative to the current document.
+- **Root-Based Links**: Include a leading slash to start from the root of the project.
+
+### Managing Images and Attachments
+Create a dedicated folder within the chapter's directory to store images and attachments, helping maintain an organized folder structure.
+
+## Configuration Essentials
+The configuration of BrillianDOCS is straightforward and centralized in the `docusaurus.config.ts` file. Here's what you need to know:
+
+- **Main Configuration**: This file includes settings for the header, metadata, navbar, footer, theme options, and plugins. 
+- **Link Checking**: The config is set to `onBrokenLinks: 'throw'`, making builds fail if any link is invalid.
+- **Sidebar Generation**: The `sidebars.ts` file is configured to auto-generate based on the contents of the `docs` folder.
+- **GitHub Pages Requirement**: The `.nojekyll` file in the `static` directory is necessary for compatibility with GitHub Pages.
+- **SEO Settings**: The `robots.txt` file is set to prevent search engine indexing.
+- **Index Redirect**: The `src/pages/index.tsx` forwards visitors to `/start`, corresponding to `docs/0_start/index.mdx`.
+- **Custom Styling**: CSS can be modified in `src/css/custom.css`.
+
+### Plugins Added
+- **Search**: Local offline search capability is provided by [docusaurus-search-local](https://github.com/easyops-cn/docusaurus-search-local).
+- **Image Zoom**: Enabled with the [docusaurus-plugin-image-zoom](https://www.npmjs.com/package/docusaurus-plugin-image-zoom).
+
+### Deployment
+BrillianDocs is hosted as a public repository on GitHub Pages. The official URL is https://imbit-mannheim.github.io/brilliandocs, but access through this link is not intended and is knowingly broken and can not be fixed!
+
+## Keeping BrillianDOCS Up to Date
+Review the [Docusaurus Changelog](https://github.com/facebook/docusaurus/blob/main/CHANGELOG.md) regularly. As long as there are no breaking changes, you can update Docusaurus via npm using these commands:
+
+1. **Check for outdated packages:**
+
+   ```bash
+   ncu
+   ```
+
+2. **Update the Docusaurus core packages:**
+
+   ```bash
+   npm install @docusaurus/core@latest @docusaurus/preset-classic@latest
+   ```
+
+3. **Update additional plugins:**
+
+   ```bash
+   npm install @easyops-cn/docusaurus-search-local@latest docusaurus-plugin-image-zoom@latest
+   ```
+4. **Update everything else:**
+
+   ```bash
+   ncu -u
+   ```
+
+## Expanding Capabilities
+
+BrillianDOCS was set up without versioning or multilingual support initially. However, should the need arise, you can enable these features by consulting the [Docusaurus Documentation](https://docusaurus.io/docs).
+
+## Current Issues and Future Enhancements
+
+- **Branding**: Integrate Brillian branding elements, such as replacing the default logo with the Brillian octopus icon, and update the color scheme and fonts to align with the brand identity.

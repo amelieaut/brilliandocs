@@ -55,7 +55,7 @@ Most applications are deployed using Elastic Beanstalk and made available throug
 1. Keep the default settings for the volume `Container-Standard`, CloudWatch interval `5 minute` and IMDSv1.
 2. Add the EC2 security group `IMBIT-SecurityGroup`.
 3. Our applications are not configured to scale, leave the default `Einzelne Instance` and `On-Demand-Instance` setting.
-4. In terms of architecture, `ARM64` can be chosen for cost efficiency, but compatibility with the code base should be checked (only the `BrillianIdeas` application is known to work with `ARM64`).
+4. In terms of architecture, `ARM64` can be chosen for cost efficiency, but compatibility with the code base should be checked (only the `BrillianIDEAS` application is known to work with `ARM64`).
 5. The smallest instance with 1 GB RAM should suffice, as of 2024 that would be for ARM64 `t4g.micro` and for x86_64 `t3.micro`. [More on AWS Instances](https://aws.amazon.com/ec2/instance-types/).
 
 <details>
