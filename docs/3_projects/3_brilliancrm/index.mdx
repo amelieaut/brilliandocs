@@ -3,10 +3,281 @@ id: brilliancrm
 title: BrillianCRM
 ---
 
+## Overview
 
-Bugs:
-Registrierungen mit manchen E-Mail Adressen (z.b. @re-gister.com von trash-mail.com) sorgt dafür, dass die Adresse nicht korrekt in die Datenbank übernommen wird und sich der User nicht anmelden kann.
+This documentation covers the **BrillianCRM** application developed for DHBW-Mannheim. The **BrillianCRM** is a web-based game that provides a platform for learning customer relationship management (CRM) developed in 2011.
+
+## Quick Sheet
+| Name      | URL           | Repository                  | Tech Stack | Database | CPU Platform | Hosting Location    |
+|-----------|---------------|----------------------------|------------|----------|--------------|------------|
+| BrillianCRM | https://brilliancrm.com | https://github.com/imbit-mannheim/brilliancrm | Tomcat 9, JRE 21, Maven 3, Shiro Web 1.13.0 and other plugins found in `pom.xml` | MariaDB 11.5.0 | x86         | AWS |
+
+
+## Repository Structure
+The application is structured with a `sql` folder for database scripts, a `src` folder containing the Java source code, resources (XML files and XSD schema) and the `webapp` folder for frontend assets and JSP pages.
+
+- `./sql` - Contains `cake.sql` which is responsible for setting up the database, tables, and initial data.
+- `./src` - Houses all the Java source code, frontend files and configuration files.
+  - `./src/main/java/org/dhbw/imbit` - Contains the Java source code.
+  - `./src/main/resources/org/dhbw/imbit` - Contains `masterfile.xml` (events that define the storyline) and `schema.xsd` (structure of the masterfile.xml).
+  - `./src/webapp` - Holds frontend assets.
+      - `./audio` - Audio files used in the application.
+      - `./backend` - Backend JSP files for administrative and professor views.
+      - `./css` - Stylesheets but also some icons for the application.
+      - `./documents` - Contains PDFs which are linked and loaded throughout the application.
+      - `./frontend` - JSP files for the end-user frontend interface.
+      - `./images` - Image assets used in the application.
+      - `./js` - JavaScript files including jQuery libraries and custom scripts like `main.js` and `xmljavascriptfunc.js`.
+      - `./logo`- Logo files being used in the application.
+      - `./video` - Containing video files that are necessary for the application.
+      - `./WEB-INF` - Contains `web.xml` which configures servlets, security settings, and other backend aspects for the web application.
+- `context.xml.template` - Template for Tomcat context configuration.
+- `pom.xml` - Maven Project Object Model file for compiling and building the application. Defines the Maven build configurations including project metadata, dependencies, plugins, and other build settings.
+- `server.xml` - Tomcat server configuration.
+- `setenv.sh` - Shell script for setting environment variables for the Tomcat server.
+
+## Java Source Code Files
+The Java source code files provide the logic and functionality needed for the **BrillianCRM** application to operate effectively and interact with the underlying database.
+
+### Backend Java Files:
+- **AdminMain.java**: Provides administrative homepage functionality, loads professors' data.
+- **ChangeStudentPassword.java**: Handles password changes for students.
+- **ConfirmRegistration.java**: Processes email confirmation for new user registration.
+- **ConnectionFactory.java**: Manages database connection settings for embedded databases.
+- **ConnectionPool.java**: Maintains a pool of database connections for efficient resource management.
+- **CreateUser.java**: Handles the creation of new user accounts.
+- **DeleteGroup.java**: Allows an administrator to delete groups.
+- **DeleteGroupMembers.java**: Deletes all members of a group, along with the group itself.
+- **DeleteProfessor.java**: Removes a professor's account from the system.
+- **DeleteUser.java**: Erases a user account from the database.
+- **GenerateHashes.java**: Utility for generating hashed passwords.
+- **GetGlobalSettings.java**: Retrieves global settings such as audio and video preferences.
+- **GetSettingsCookies.java**: Fetches user settings and stores them in cookies.
+- **LoginUser.java**: Handles user login and session management.
+- **LogoutUser.java**: Manages user logout, clearing the session.
+- **MailClient.java**: Sends emails using SMTP, supports both HTML and plain text.
+- **NewUsergroup.java**: Creates a new user group within the system.
+- **PasswordEncryptor.java**: Provides password hashing functionality using SHA-256 and salt.
+- **PasswordReset.java**: Manages resetting user passwords and sending temporary passwords via email.
+- **ProfessorMain.java**: Controls the professor's main interface, handling groups and student data.
+- **RegisterStudent.java**: Displays the student registration form.
+- **ResetUserProgress.java**: Resets the progress of a user in the game.
+- **RoleSecurityJdbcRealm.java**: Extends JdbcRealm to integrate with Shiro's security framework for role-based access.
+- **SendRegistrationLink.java**: Sends out registration links to prospective users.
+- **SetGlobalSettings.java**: Updates global settings such as audio and video preferences.
+- **SetUserProgress.java**: Updates user progress within the game.
+- **StudentHomepage.java**: Serves the student homepage view.
+- **StudentMain.java**: Controls the student main interface.
+- **UserRealm.java**: Central class for various database-related operations, including user and group management.
+
+### Main Java Files:
+- **AboutController.java**: Serves the "About" page content.
+- **ApplicationConstants.java**: Holds a set of constants used throughout the application for consistent titles and labels.
+- **Event.java**: Handles event processing based on user actions in the game.
+- **EventExtractor.java**: Extracts and processes XML events for the game.
+- **FileViewer.java**: Provides a view for XML files within the application.
+- **ImprintController.java**: Displays the imprint/legal notice page.
+- **LaptopController.java**: Manages the in-game laptop interface.
+- **LocationController.java**: Handles location-based interactions within the game.
+- **MailController.java**: Manages the email functionality in the game.
+- **MailDraftController.java**: Handles creation of email drafts.
+- **MainController.java**: Controls the main game interface.
+- **NodeViewer.java**: Allows viewing of XML nodes for development purposes.
+- **ResultController.java**: Presents the game's results page.
+- **UploadServlet.java**: Manages the uploading of XML files to the server.
+
+## Tomcat Configuration Files
+- `context.xml.template` - Specifies the data source for the application allowing variables to fill with the actual database credentials.
+- `server.xml` - Configures the Tomcat server's settings, including ports and various listeners for lifecycle and security.
+- `setenv.sh` - A shell script that exports environment variables for the Tomcat server to use.
+
+## JavaScript Files
+- `main.js` - Handles the document initialization for the front page, sets up event handlers, defines global and local variables, and manages the AJAX requests for game data.
+- `xmljavascriptfunc.js` - Provides a utility function `loadXMLDoc` to load XML documents synchronously, which is used across the application for XML processing.
+
+## JSP Files Overview
+JSP files are integral to **BrillianCRM**, serving as the presentation layer that interacts with users and provides a dynamic interface for the gaming experience.
+
+### Backend Folder JSPs:
+  - **homepage_admin.jsp**: The administrative homepage interface allowing admin users to manage lecturers, global settings, and perform password changes.
+  - **homepage_professor.jsp**: The professor homepage interface where professors can manage groups, send email invitations, and adjust student progress.
+  - **homepage_student.jsp**: The student homepage interface for students to change their password and jump to specific levels in the game.
+  - **register_student.jsp**: A form for registering new students with the group number, gender, name, and email address.
+  - **registration_complete.jsp**: A page displayed after successful student registration, providing a link to log in.
+  - **registration_landing.jsp**: The landing page new students see after registration, informing them that their account is inactive until email verification.
+  - **sendregistrationlink.jsp**: An interface for professors to send registration links to students' email addresses.
+
+### Frontend Folder JSPs:
+  - **about.jsp**: Provides information about the BrillianCRM project, including the team and a teaser video link.
+  - **imprint.jsp**: The legal imprint page containing contact information, legal disclaimers, copyright details, and acknowledgments for frameworks and icons used in the project.
+  - **laptop.jsp**: The interface for the in-game laptop, showing the email client with tabs and inbox.
+  - **location.jsp**: The main page for different location-based interactions in the game, including dialogues and events.
+  - **mail.jsp**: An interface for reading emails, displaying sender, recipient, subject, date, content, and attachments.
+  - **maildraft.jsp**: The interface for drafting emails in the game, where players can select from different response options.
+  - **main.jsp**: The central game interface with navigation to various game locations, mail client, and TCQ (Time, Cost, Quality) indicators.
+  - **result.jsp**: The end-of-game page that presents the player with their final TCQ scores and offers an option to restart the game.
+
+### WebApp Root Folder JSPs:
+  - **contentquery.jsp**: A tool for developers to browse game content by node ID.
+  - **index.jsp**: A development console for the BrillianCRM app with links to various development resources such as a content explorer, file upload, file viewer, and API documentation.
+  - **login.jsp**: The user login page for the BrillianCRM game, also containing links to password reset, registration, and a teaser video.
+  - **resetpw.jsp**: The password reset page where users can enter their email to receive a temporary password.
+  - **uploadfile.jsp**: An interface for uploading XML files to the game's backend system.
+  - **viewfile.jsp**: An interface to view the contents of the uploaded XML game tree file.
+
+
+## User Management
+
+### Roles
+
+In BrillianCRM, there are three distinct roles with different levels of access and functionalities. Each role has access to different servlets and JSPs that are appropriate for their level of access and functionalities in the application. Access control is managed using the Apache Shiro security framework, which checks the user's role when loggin in and then grants access to protected routes and functionalities.
+
+1. **Student**: 
+   Students are the primary users of the game. They can play the game, make decisions that affect their Time, Cost, and Quality (TCQ) scores, view their progress, and change their own passwords. They interact with various interfaces and scenarios within the game to learn project management concepts.
+2. **Professor**:
+   Professors have the ability to create and manage student groups, send registration links to students, and track the progress of the students within their groups. Additionally, they can delete groups or students and set the game progress for their students.
+3. **Admin**:
+   Admins have the highest level of access in the system. They possess all the capabilities of professors but with additional administrative privileges. Admins can create professor accounts, view all professors in the system, manage the global settings (audio, video, etc.), and reset passwords for other users.
+
+### Student Creation
+The process for creating students, involves the following steps and classes:
+
+1. **User Registration**
+   - The user initiates the registration process by accessing the registration form provided by the `RegisterStudent` servlet. This form includes inputs for necessary details such as name, gender, email, password, and group number (for students).
+2. **Form Submission**
+   - The form data is submitted to the `CreateUser` servlet, which processes the request.
+3. **User Data Validation**
+   - The `CreateUser` servlet validates the provided user data to ensure all required fields are filled, passwords match, and the user does not already exist in the database (to avoid duplicates).
+4. **Password Encryption**
+   - If validation passes, the submitted password is encrypted using the `PasswordEncryptor` class, which uses the SHA-256 hashing algorithm. Please note that the Salt is defined twice: once in `PasswordEncryptor.java` in clear text, and then Base64-encoded in `web.xml`.
+5. **Database Insertion**
+   - The `UserRealm` class handles the insertion of the new user into the database. For student registration, a unique and unverified email (used as a temporary placeholder) is stored in the database until the user confirms their registration via email.
+6. **Sending Confirmation Email**
+   - For student accounts, a confirmation email is sent using the `MailClient` class. This email contains a unique link that includes an identifier for completing the registration process.
+7. **Email Confirmation Handling**
+   - When the user clicks the confirmation link in their email, the `ConfirmRegistration` servlet is invoked, which updates the user's temporary email to the actual email address, thus completing the registration process.
+
+### Professor Creation
+A default professor account for Bendl is being created in the `cake.sql` file. If more professors are needed, you can do so from the admin interface.
+
+### Password Reset
+
+The password reset process is designed to help users who have forgotten their passwords regain access to their accounts. The process involves the following steps, using the `PasswordReset` servlet and the `MailClient` class:
+
+1. **Password Reset Request**: 
+   - The user initiates the request by navigating to the `resetpw.jsp` page and entering their email address.
+2. **Email Verification**: 
+   - The `PasswordReset` servlet verifies that the email provided is associated with a user account in the system.
+3. **Temporary Password Generation**: 
+   - The servlet generates a temporary password and encrypts it using `PasswordEncryptor`.
+4. **Database Update**: 
+   - The encrypted temporary password is then updated in the database for the user's account using the `UserRealm` class.
+5. **Email Dispatch**: 
+   - The `MailClient` class is used to send an email containing the temporary password to the user's email address.
+6. **User Notification**: 
+   - The user receives an email with the temporary password and instructions to log in and change their password.
+7. **Password Update**: 
+   - Upon successful login with the temporary password, the user is advised to update their password to something new and secure.
+
+### Generating Password Hashes
+If you need to manually generate password hashes, a class `GenerateHashes` has been created for this very purpose, as it was required when manually defining the default professor and admin accounts in `cake.sql`.
+To generate a hash for a custom password, make sure the BrillianCRM docker container is running and then run the following command:
+
+```bash  
+docker exec -it brilliancrm java -cp "/usr/local/tomcat/webapps/ROOT/WEB-INF/classes:/usr/local/tomcat/webapps/ROOT/WEB-INF/lib/*" org.dhbw.imbit11.backend.GenerateHashes
+```
+
+## Routes
+Here is an overview of the servlet routes and their functions:
+
+- `/Admin`: Loads administrative homepage and data.
+- `/ChangeStudentPassword`: Allows students to change their password.
+- `/ConfirmRegistration`: Handles email confirmation for new users.
+- `/CreateUser`: Processes new user account creation.
+- `/DeleteGroup`: Enables deletion of user groups.
+- `/DeleteGroupMembers`: Deletes all members of a specified group.
+- `/DeleteProfessor`: Removes a professor account.
+- `/DeleteUser`: Erases a user account.
+- `/GetGlobalSettings`: Retrieves global settings (audio, video, etc.).
+- `/GetSettingsCookie`: Fetches settings and saves them in cookies.
+- `/LoginUser`: Manages user login.
+- `/LogoutUser`: Handles user logout and session termination.
+- `/NewUsergroup`: Creates a new user group.
+- `/Professor`: Loads the professor homepage and associated data.
+- `/Registration`: Displays the student registration form.
+- `/ResetUserProgress`: Resets the progress of a user in the game.
+- `/Result`: Displays the end-of-game results page.
+- `/SetGlobalSettings`: Updates global settings.
+- `/SetUserProgress`: Updates user progress in the game.
+- `/StudentHomepage`: Serves the student homepage view.
+- `/Student`: Loads the student main interface.
+- `/Upload`: Manages the uploading of XML files.
+
+Additionally, the application uses several controllers to serve JSP views for different application pages:
+- `/About`: Serves the "About" page content.
+- `/Imprint`: Displays the imprint/legal notice page.
+- `/Laptop`: Manages the in-game laptop interface.
+- `/Location`: Handles location-based interactions within the game.
+- `/Mail`: Manages mail functionality within the game.
+- `/MailDraft`: Handles email draft creation.
+- `/Main`: Controls the main game interface.
+- `/Node`: Views XML nodes for development purposes.
+- `/Event`: Handles event processing based on user actions in the game.
+- `/Result`: Presents the game's results page.
+- `/View`: Provides a view for XML files within the application.
+
+## Mail
+The BrillianCRM/ICM applications have experienced mail sending issues in the past. Now that the application is using the latest version of [Jakarta Mail](https://mvnrepository.com/artifact/com.sun.mail/jakarta.mail) (2.0.1) and has all the security features implemented, these issues should not occur in the near future. However if issues arise, these are the involved classes that send mails:
+
+1. **MailClient**
+   - The `MailClient` class is the primary utility that handles the composition and sending of emails. It uses the JavaMail API to construct and send both HTML and plain text emails via SMTP.
+2. **PasswordReset**
+   - The `PasswordReset` servlet uses the `MailClient` class to send a temporary password to users who have requested to reset their password.
+3. **CreateUser**
+   - The `CreateUser` servlet uses the `MailClient` class to send confirmation emails to new students, containing the link to verify their email address and complete the registration process.
+4. **SendRegistrationLink**
+   - The `SendRegistrationLink` servlet is used by professors to send out registration links to new users. It also utilizes the `MailClient` class to send the email containing the registration link.
+
+## Database Structure
+
+The database structure for **BrillianCRM** is defined within the `cake.sql` script. This script establishes the schema for the BrillianCRM database which consists of several key tables that manage user information, group associations, settings preferences, and user progress within the CRM game. It also automatically creates default professor and admin accounts which are stored in Bitwarden.
+
+#### `group`
+This table holds information about groups within the application, each identified by a unique `GROUP_ID`. Groups can be associated with a `PROFESSOR_ID`, indicating the professor who manages the group. Additional details like the group's name, organization, description, and URL are stored within this table.
+
+#### `settings`
+A simple table that stores global settings for the application with regard to audio, video, text-to-speech, and subtitle preferences.
+
+#### `user`
+The `user` table is central to the application's user management. It stores user credentials, names, roles, and registration dates. Each user is assigned a unique `USER_ID`. Users can be linked to groups and have roles such as 'student', 'professor', or 'admin'.
+
+#### `user_progress`
+This table tracks the progress of users in the game. It ties a `USER_ID` to various metrics like cost, quality, and time, which are core to the game's learning objectives. A `PATH` field is available for storing a text representation of the user’s progress through the game's storyline.
+
+### Relationships
+
+- `group` has a foreign key to `user` indicating the professor responsible for the group.
+- `user` has an optional foreign key to `group`, allowing the association of users with groups.
+- `user_progress` is linked to `user`, ensuring that progress is tied directly to an individual user's record.
+
+### Initial Data and Constraints
+
+The script includes initial insertions for groups and settings, as well as two user accounts, one for a professor and one for an admin. Referential integrity is maintained through foreign key constraints with cascade updates and deletes, ensuring that related data remains consistent throughout the database operations.
+
+### Remarks
+
+The use of `AUTO_INCREMENT` for primary keys ensures that new records are assigned unique identifiers without manual intervention. The database uses the `utf8` character set with the `utf8_unicode_ci` collation, which supports internationalization and case-insensitive text storage.
+
+### Dockerfile_mariadb
+A custom MariaDB image is created for the sole purpose of copying `cake.sql` into the `/docker-entrypoint-initdb.d/` directory of MariaDB.
+Any .sql file in this directory will be executed on the first boot of the MariaDB container. You could try to mount the `cake.sql` directly on a standard MariaDB container, but the current approach is preferred for AWS, as this way nothing needs to be updated on AWS and the complete settings are on GitHub. 
+
+## Update Limitations
+
+Due to compatibility issues, further updating of the application's core components has been halted:
+
+- **Tomcat 10**: Upgrade not possible because it drops the `javax` namespace. Our Fileupload Plugin doesn't support the new `jakarta` namespace yet. A new version must be first awaited.
+- **Shiro Web Plugin (v2.0.0)**: Recent upgrade breaks the Password Encryption class with no available fix due to the current lack of official documentation from Shiro Web.
 
 ## Known Issues and Pending Tasks
-Can be found inside the [Repositories Issues](https://github.com/IMBIT-Mannheim/brilliancrm/issues) section.
-
+Can be found inside the [Repositories Issues](https://github.com/IMBIT-Mannheim/BrillianCRM/issues) section.
