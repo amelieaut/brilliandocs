@@ -78,6 +78,7 @@ const config: Config = {
       logo: {
         alt: 'BrillianDOCS Logo',
         src: 'img/logo.svg',
+        href: '/start',
       },
     },
     footer: {

@@ -3,35 +3,357 @@ id: brillianquiz
 title: BrillianQUIZ
 ---
 
+## Introduction
+BrillianQUIZ is an interactive web-based quiz platform designed to engage users in a dynamic learning experience. Built with modern web technologies, BrillianQUIZ provides a user-friendly interface, instant feedback on quiz performance, and a comprehensive set of tools for educators to create and manage courses and quizzes.
+BrillianQUIZ is compromised of two parts - the backend (server logic) and the frontend (user interface).
 
-```mdx-code-block
-import DocCardList from '@theme/DocCardList';
-
-<DocCardList />
-```
-
-## Overview
-Table with Name, URL, Repo Link, Tech Stack, Database, CPU Platform, Created 
+## Quick Sheet
 | Name      | URL           | Repo Link                  | Tech Stack | Database | CPU Platform | Hosting Location    |
 |-----------|---------------|----------------------------|------------|----------|--------------|------------|
-| BrillianIDEAS | https://brillianideas.com | https://github.com/imbit-mannheim/brillianideas | Apache | N/A  | ARM64         | AWS |
+| BrillianQUIZ | https://brillianquiz.com | https://github.com/imbit-mannheim/brillianquiz | Backend: Node.js, Express.js, Mongoose. Frontend: Vue.js, Vite, Pinia, Vue Router | MongoDB  | x86         | AWS |
+
+## Backend
+The backend of BrillianQUIZ serves as the backbone of the platform, handling all server-side logic, data storage, API requests, and responses. The backend manages user authentication, course and quiz data, and provides endpoints for the frontend to retrieve and modify data.
+
+### Directory Structure
+
+The codebase is organized into the following directories:
+- `./backend/controllers`: Contains logic for handling incoming requests and returning responses.
+- `./backend/database`: Contains the data to configure and initialize the database with data.
+- `./backend/docs/`: Documentation location that the Swagger API loads.
+- `./backend/models/`: Contains Mongoose schemas that define the structure of documents in MongoDB.
+- `./backend/routes/`: Defines the HTTP endpoints of the application and maps them to controller functions.
+- `./backend/utils/`: Includes utility functions and classes that are used across the application such as mail sending and error handling.
+- `./backend/views/`: Contains the styles and content for the mail that are being sent.
+- `./backend/index.js`: Main file loading the application, dependencies, middleware and routes.
+
+### Controllers
+
+Controllers handle incoming HTTP requests, interact with the database, and return responses. Some of the key controllers include:
+
+- `authController.js`: Handles authentication and authorization features including signup, login, password management, and access control.
+- `categoryController.js`: Manages operations related to quiz categories.
+- `courseController.js`: Responsible for course management, including CRUD operations and student enrollment.
+- `errorController.js`: Centralized error handling mechanism for the application.
+- `handlerFactory.js`: Provides generic functions for CRUD operations that can be reused across different data models.
+- `questionController.js`: Manages quiz questions, including creating, updating, and deleting questions.
+- `subjectController.js`: Contains functions for subject management, related to quiz categories.
+- `submissionController.js`: Processes quiz submissions and evaluates them.
+- `userController.js`: Manages user data, including CRUD operations and self-service functions for updating user information and handling submissions.
+
+### Models
+
+Models define the structure and behavior of data entities in MongoDB. They are built using Mongoose and include:
+
+- `categoryModel.js`: Represents a quiz category.
+- `courseModel.js`: Represents a course, including its name, professor, and enrolled students.
+- `questionModel.js`: Defines a quiz question, including types such as single choice, multiple choice, etc.
+- `subjectModel.js`: Represents a subject, which is linked to a category and can contain multiple questions.
+- `submissionModel.js`: Represents a submission of answers by a user for a given subject.
+- `userModel.js`: Defines a user, including personal details, role, and password management fields.
+
+### Routes
+
+Routes define the API's endpoints and associate them with controller functions. They are grouped by functionality:
+
+- `quizCategoryRoutes.js`: Endpoints related to quiz categories.
+- `quizCourseRoutes.js`: Endpoints for course management.
+- `quizQuestionRoutes.js`: API routes for handling quiz questions.
+- `quizSubjectRoutes.js`: Endpoints for subject-related operations.
+- `userRoutes.js`: User-related endpoints, including authentication and self-service operations.
+
+### Utils
+
+Utility files include common functions and classes that are used throughout the application:
+
+- `appError.js`: Defines a custom `AppError` class for consistent error handling.
+- `asyncForEach.js`: Provides an asynchronous version of the `forEach` loop.
+- `catchAsync.js`: A higher-order function to catch errors in asynchronous functions.
+- `email.js`: Contains the `Email` class to send emails using Nodemailer.
+- `filterObject.js`: A utility function to filter object properties based on allowed fields.
+
+### API Documentation
+
+The application provides a Swagger documentation interface for the API. Once the application is running, you can access the documentation at `/docs` to explore the available endpoints, their parameters, and responses.
+
+### Error Handling
+
+The application has a global error controller (`errorController.js`) that captures and processes errors throughout the application. It distinguishes between operational errors (e.g., invalid input data) and programming errors, ensuring that the client receives meaningful error messages while sensitive information is protected.
+
+### Security Measures
+
+The application includes several security measures:
+- `helmet` for setting HTTP headers to protect against common web vulnerabilities.
+- `express-rate-limit` to limit repeated requests to public APIs from a single IP address.
+- Data sanitization to prevent NoSQL injection (`express-mongo-sanitize`) and XSS attacks (`xss-clean`).
+- `hpp` to prevent HTTP parameter pollution.
+
+### Authentication and Authorization
+
+The application uses JSON Web Tokens (JWT) for authentication. The `authController.js` manages token generation, verification, and the implementation of protected routes. Users are assigned roles (`student`, `professor`, `admin`), and access to certain endpoints is restricted based on these roles.
+
+### Views Directory
+
+The `./backend/views` directory contains Pug templates for the email system. Pug is a high-performance template engine heavily influenced by Haml and implemented with JavaScript for Node.js and browsers.
+
+- `emailstyle.pug`: Defines the CSS styles used by the email templates.
+
+- `baseemail.pug`: The base Pug template that sets up the HTML structure for emails. It provides a responsive layout with a header, main content area, and footer. Other email templates extend this base template.
+
+- `passwordreset.pug`: An email template for sending password reset instructions.
+
+- `welcome.pug`: A welcome email template for new users.
+
+Despite having a `passwordreset.pug` template the app does not currently implement a web-based password reset feature!
+
+### Database Directory
+
+The `./backend/database` directory contains scripts and data for initializing and populating the MongoDB database.
+
+- `config.js`: Establishes a connection to the MongoDB database.
+
+- `initialize.js`: The main script responsible for initializing the database. It connects to the database, and if the `DATABASE_DATA_POPULATION_INITIAL_SETUP` environment variable is set to `true`, it populates the database with initial data.
+
+#### Data Scripts
+
+- `courses.js`: Contains a function to create initial courses and assign professors to them based on the `PROFESSOR_*` environment variables.
+
+- `questions.js`: Reads questions from a JSON file (`questions_data.json`) and inserts them into the database.
+
+- `subjects.js`: Defines a function to create subjects and assign them to categories. It contains predefined subjects and descriptions mapped to category names.
+
+- `users.js`: Includes a function to create initial user accounts, such as an admin and professors, based on environment variables. It also creates a dummy user account with the predefined `62657cd392fe186ae556620b` id for taking quizzes anonymously.
+
+#### Data Files
+
+- `questions_data.json`: A JSON file containing the complete quiz questions. The `questions.js` script reads data from this file to populate the questions in the database.
+
+### Environment Variables
+
+The backend's configuration can be managed through these environment variables specified in the `docker-compose.yml` file:
+
+| Variable | Description | Values |
+| -------- | ----------- | ------------- |
+| `NODE_ENV` | On development logging is enabled, but CORS disabled. For production vice-versa. | `development` or `production` |
+| `DATABASE_DATA_POPULATION_INITIAL_SETUP` | When set to `true`, populates the database with initial data on startup. | `true` or `false` |
+| `MONGODB_CONNECTION_STRING` | MongoDB connection URI for the application to connect to the database. | `mongodb://user:password@host:port/database_name?authSource=admin` |
+| `JWT_SECRET` | 32 or 64 characters long secret key used for signing and verifying JWT tokens. | `generate_me` |
+| `JWT_EXPIRES_IN` | Duration for which the JWT token remains valid. | `90d` |
+| `JWT_COOKIE_EXPIRES_IN` | Duration in days for which the JWT cookie remains valid. | `90` |
+| `SMTP_SERVER` | Hostname or IP address of the SMTP server. | `email-smtp.eu-west-1.amazonaws.com` |
+| `SMTP_PORT` | Port number used by the SMTP server. | `587` |
+| `SMTP_USER` | Username for the SMTP server authentication. | `in_Bitwarden` |
+| `SMTP_PASSWORD` | Password for the SMTP server authentication. | `in_Bitwarden` |
+| `EMAIL_FROM` | The email address from which the application sends emails. | `no-reply@mail.brillianideas.com` |
+| `EMAIL_LINK_PROTOCOL` | Protocol used in the links sent via email. | `http` or `https` |
+| `CORS_WHITELIST` | A comma-separated list of origins allowed to access the API. | `https://brillianquiz.com,https://www.brillianquiz.com` |
+| `ADMIN_EMAIL` | Email address for the initial admin user account. | `in_Bitwarden` |
+| `ADMIN_PASSWORD` | Password for the initial admin user account. | `in_Bitwarden` |
+| `PROFESSOR_A_EMAIL` | Email address for the initial professor A-course user account. | `in_Bitwarden` |
+| `PROFESSOR_A_PASSWORD` | Password for the initial professor A-course user account. | `in_Bitwarden` |
+| `PROFESSOR_A_FIRSTNAME` | First name of the initial professor A-course user account. | `in_Bitwarden` |
+| `PROFESSOR_A_LASTNAME` | Last name of the initial professor A-course user account. | `in_Bitwarden` |
+| `PROFESSOR_A_SUFFIX` | Suffix used for creating course names associated with professor A. | `A` |
+| `PROFESSOR_B_EMAIL` | Email address for the initial professor B-course user account. | `in_Bitwarden` |
+| `PROFESSOR_B_PASSWORD` | Password for the initial professor B-course user account. | `in_Bitwarden` |
+| `PROFESSOR_B_FIRSTNAME` | First name of the initial professor B-course user account. | `in_Bitwarden` |
+| `PROFESSOR_B_LASTNAME` | Last name of the initial professor B-course user account. | `in_Bitwarden` |
+| `PROFESSOR_B_SUFFIX` | Suffix used for creating course names associated with professor B. | `B` |
 
 
-## Functions
+## Frontend
 
-## Starting Application
+BrillianQUIZ's frontend is crafted with a component-driven architecture, state management using Pinia, and client-side routing with Vue Router. It communicates with the backend REST API to present users with real-time data and interactive capabilities.
 
-## Environment Variables and Config
+### Directory Structure
+- `./frontend/public`: Contains static assets that are directly served by the web server.
+  - `./assets`: Further organized into `animated/`, `background/`, `quizmeerestiere/` subfolders, and contains various mediafiles files.
+  - `./favicon.ico`: The application's favicon icon.
+  - `./horns.cur`: A custom cursor file.
+  - `./robots.txt`: Provides web crawler instructions (currently allowing all).
+- `./frontend/router`: Defines the Vue router configuration. Contains `index.js`.
+- `./frontend/src`: The source directory containing Vue components, CSS, helpers, stores, and views.
+  - `./components`: Custom Vue components used across the application.
+  - `./css`: Global styles, variables, and specific styles for admin pages and fonts.
+  - `./helpers`: Containing the Axios configuration with a base URL for API requests. It also sets up an interceptor to handle error messages coming from the API.
+  - `./stores`: State management stores using Pinia.
+  - `./views`: Vue components representing pages navigable via the Vue router.
+- `./frontend/main.js`: The main entry point of the application creates the Vue application instance, sets up routing with Vue Router, state management with Pinia, and adds head management with `@vueuse/head`.
+- `./frontend/index.html`: The root HTML file that includes the main `<div id="app"></div>` where the Vue app is mounted and a reference to the main JavaScript file.
+- `./frontend/nginx.conf`: An Nginx configuration file that defines rules for serving the application, proxying API requests, and caching static assets. It includes settings for the server block, location directives, and proxy configurations.
+- `./frontend/vite.config.js`: The Vite configuration file defines settings for the application build process, including plugin usage and resolving of import aliases for cleaner imports in the codebase.
 
-## Routes
+### Router Configuration
 
-## User Roles
+The Vue router configuration is defined in `./frontend/router/index.js`. The application uses Vue Router's `createRouter` and `createWebHistory` to define client-side routing.
 
-## Database Setup
+### CSS Structure
 
-## Updating
+CSS files are organized into global styles and variables, with separate folders for admin-specific styles (`admin/`) and font files (`fonts/`).
 
-## Known Bugs
+- `./global.css`: Contains global styles applied across the application.
+- `./variables.css`: Defines CSS variables for consistent theming.
+- `./admin/admin-global.css`: Global styles specifically for admin pages.
+- `./admin/admin-variables.css`: CSS variables for admin theming.
+- `./fonts`: Contains font files used within the application.
 
-## Open ToDo's
-- Move to GitHub Pages? Requieres making the Repository public and it is unknown if the repository contains any sensitive information
+
+### Components
+
+Focusing on the `./frontend/src/components/` directory containing components that defines their own structure with `<template>`, interactive elements and data management in `<script setup>`, and scoped styles in `<style>`. They work together to create an interactive and dynamic user interface for both regular users and administrators.
+
+#### Admin Components
+- `admineinstellungen.vue`: An admin settings component with a header and a login mask for admin users.
+- `adminhilfe.vue`: A simple help page for the admin interface of brillianQUIZ.
+- `adminhome.vue`: The home page for admins with a welcome message and navigation tips.
+- `adminkursverwaltung.vue`: A course management interface for admins to select and edit courses.
+- `adminnavbar.vue`: A navigation bar component for the admin interface with links to different admin sections and a logout button.
+- `adminquizfragen.vue`: A component that provides an overview of quiz questions and allows navigation to edit individual questions.
+- `editquizfrage.vue`: An editor component for individual quiz questions where admins can modify the question, answer options, and correct answers.
+- `kurselement.vue`: A detailed view of a course, showing its name, professor information, a list of students, and options to add or remove students.
+- `listelement.vue`: A recursive component for listing items such as courses or questions, which can expand to show nested items.
+
+#### General Components
+- `bubblebackground.vue`: A background component that creates a visual effect with animated bubbles.
+- `evaluationmodal.vue`: A modal that displays evaluation results with points gained and percentage after a quiz is submitted.
+- `fishbubbel.vue`: Represents a clickable fish bubble that acts as a navigation link, which can display static images or animated videos.
+- `gaptext.vue`: A component for gap text-type quiz questions where users can select answers from drop-downs to fill in the blanks.
+- `loginmask.vue`: A reusable component for user authentication, with forms for login and registration, and options to overlay other views if needed.
+- `quizdraggable.vue`: Used for quiz questions that require items to be ordered or assigned, it provides draggable elements for interactive sorting and matching.
+- `quizfrage.vue`: The main quiz question component that renders different types of quiz questions based on the data provided.
+- `theheader.vue`: A header component with a kraken icon, a title, and a user icon that navigates to the user management page.
+- `userthing.vue`: A small user icon with the first name of the logged-in user, providing a link to the user management page.
+
+
+### Stores
+
+In the `./frontend/src/stores` directory, several Pinia stores provide state management for different aspects of the brillianQUIZ application:
+
+- `course.js`: Manages course data, student submissions, email additions, and course editing features.
+- `question.js`: Contains states and actions for fetching and managing questions, categories, and subjects within the quiz system.
+- `quiz.js`: A simple store to toggle the quiz evaluation state, controlling the display of correct or incorrect answers.
+- `user.js`: Manages user authentication, including login, logout, user data retrieval, and user data updates.
+
+
+### Views
+
+The `frontend/src/views` directory contains Vue components that represent entire pages of the application. Each Vue file defines the template, script setup, and scoped styles for that page.
+
+- `adminseite.vue`: The admin interface.
+- `easteregg.vue`: A fun easter egg page.
+- `fach.vue`: Displays quizzes for a particular subject.
+- `fachrichtung.vue`: Lists subjects within a particular category.
+- `home.vue`: The landing page of the application.
+- `notfound.vue`: A 404 not found page.
+- `userpage.vue`: User account management page.
+
+### Environment Variables
+
+| Variable | Description                                      | Values                  |
+|----------------------|--------------------------------------------------|--------------------------|
+| `VITE_BACKEND_URL`   | The base URL for API requests used by Axios. If not defined, the default is set to `/api`. | empty |
+
+## Database Structure Documentation
+
+The database structure for BrillianQUIZ is designed using MongoDB, a NoSQL document database. It consists of several collections, each representing different aspects of the application:
+
+### Collections and Schemas
+
+#### `Category`
+This collection holds the categories under which subjects are grouped.
+
+- `name`: String, required, unique.
+- `image`: String, optional.
+- `description`: String, optional.
+- `subjects`: Virtual, populates related subjects.
+
+#### `Course`
+Represents a course that contains a name, a professor, and enrolled students.
+
+- `name`: String, required, unique.
+- `professor`: Object ID reference to `User`, required, must be a professor.
+- `students`: Array of Object ID references to `User`, optional, must be students.
+
+#### `Question`
+Defines quiz questions with various types (e.g., single choice, multiple choice).
+
+- `subject`: String, required, matches a subject's name.
+- `subjectId`: Object ID reference to `Subject`.
+- `type`: String, required, enum (specific question types).
+- `active`: Boolean, required.
+- `question`: String, required.
+- `answers`: Array of Strings, required.
+- `correctAnswers`: Array of Numbers, required, not exposed by default.
+- `titles`: Array of Strings, conditional, based on question type.
+
+#### `Subject`
+Represents a subject linked to a category with multiple questions.
+
+- `name`: String, required, unique.
+- `categoryId`: Object ID reference to `Category`, required.
+- `description`: String, required.
+- `image`: String, optional.
+- `questions`: Virtual, populates related questions.
+
+#### `Submission`
+Represents a submission of answers by a user for a given subject.
+
+- `subjectId`: Object ID reference to `Subject`, required.
+- `userId`: Object ID reference to `User`, required.
+- `date`: Date, required.
+- `questions`: Array of `submittedQuestionSchema`.
+- `pointsMax`: Number, optional.
+- `pointsGained`: Number, optional.
+
+##### `submittedQuestionSchema` (subdocument in `Submission`)
+Defines submitted questions in a quiz attempt.
+
+- `questionId`: Object ID reference to `Question`, unique within submission.
+- `answersGiven`: Array of Numbers, required.
+- `answersEvaluated`: Array of Booleans, required.
+- `pointsGained`: Number, optional.
+- `pointsMax`: Number, optional.
+
+#### `User`
+Defines a user with roles (e.g., student, professor, admin).
+
+- `firstName`: String, required.
+- `lastName`: String, required.
+- `email`: String, required, unique, validated.
+- `role`: String, enum (student, professor, admin).
+- `password`: String, required, not exposed by default.
+- `passwordConfirm`: String, required, for validation only.
+- `passwordChangedAt`: Date, optional.
+- `passwordResetToken`: String, optional, not exposed by default.
+- `passwordResetExpires`: Date, optional, not exposed by default.
+- `active`: Boolean, default true, not exposed by default.
+- `courses`: Virtual, populates courses the user is enrolled in.
+- `coursesIManage`: Virtual, populates courses the user manages (professors).
+
+### Relationships
+
+Many of the collections are related to one another through Object ID references. MongoDB does not enforce these relationships, but the application logic ensures integrity. Here is an overview of the relationships:
+
+- A `Category` has many `Subjects` through the `categoryId` field.
+- A `Subject` belongs to one `Category` and has many `Questions` through the `subjectId` field.
+- A `Course` is related to a `User` (professor) and has many `Users` (students).
+- A `Question` is related to a `Subject`.
+- A `Submission` is related to a `User` and a `Subject` and contains many `submittedQuestionSchema` subdocuments, which in turn reference `Questions`.
+- A `User` can have many `Submissions`, be enrolled in many `Courses` as a student, and manage many `Courses` as a professor.
+
+### Indexing Strategy
+
+Indexes improve query performance. Given the relational nature of the data models and the common query patterns, the following fields are indexed:
+
+- `email` in `User` (unique index for quick lookups by email).
+- `name` in `Category`, `Subject`, and `Course` (unique indexes for name-based lookups).
+
+### Security Considerations
+
+Sensitive fields, particularly those related to user authentication (`password`, `passwordResetToken`, `passwordResetExpires`), are marked as not exposed by default. They can only be explicitly selected when necessary for security operations.
+
+## Other documents
+- [Veränderungsvorschläge für die Quizze von der UI/UX Gruppe SS2022](proposal.pdf)
+
+## Known Issues and Pending Tasks
+Can be found inside the [Repositories Issues](https://github.com/IMBIT-Mannheim/brillianquiz/issues) section.
