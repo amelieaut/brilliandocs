@@ -121,6 +121,11 @@ The `./backend/database` directory contains scripts and data for initializing an
 - Each question object includes the `subject`, `type`, `active` status, the actual `question`, an array of possible `answers`, an array of `correctAnswers` indicating the correct option(s), and an optional array of `titles` for certain question types.
 - Question types are: Order, MultipleChoice, gapText, assign1:1 and assignN:1
 
+#### Important Notice
+:::danger Potential Data Loss
+Administrators can edit questions directly from the web site (see `adminquizfragen.vue`), which creates a special problem. The changes only affect the database, not `questions_data.json`. So if the database is lost, the changes will be lost too! If changes are made via the website, please export a new .json from the database. Alternatively, you can maintain the questions by editing `questions_data.json` only.
+:::
+
 ### Environment Variables
 
 The backend's configuration can be managed through these environment variables specified in the `docker-compose.yml` file:
@@ -201,7 +206,7 @@ Focusing on the `./frontend/src/components/` directory containing components tha
 - `adminhome.vue`: The home page for admins with a welcome message and navigation tips.
 - `adminkursverwaltung.vue`: A course management interface for admins to select and edit courses.
 - `adminnavbar.vue`: A navigation bar component for the admin interface with links to different admin sections and a logout button.
-- `adminquizfragen.vue`: A component that provides an overview of quiz questions and allows navigation to edit individual questions.
+- `adminquizfragen.vue`: A component that provides an overview of quiz questions and allows navigation to edit individual questions. See [Important Notice](#important-notice)!
 - `editquizfrage.vue`: An editor component for individual quiz questions where admins can modify the question, answer options, and correct answers.
 - `kurselement.vue`: A detailed view of a course, showing its name, professor information, a list of students, and options to add or remove students.
 - `listelement.vue`: A recursive component for listing items such as courses or questions, which can expand to show nested items.
