@@ -95,13 +95,9 @@ The application uses JSON Web Tokens (JWT) for authentication. The `authControll
 ### Views Directory
 
 The `./backend/views` directory contains Pug templates for the email system. Pug is a high-performance template engine heavily influenced by Haml and implemented with JavaScript for Node.js and browsers.
-
 - `emailstyle.pug`: Defines the CSS styles used by the email templates.
-
 - `baseemail.pug`: The base Pug template that sets up the HTML structure for emails. It provides a responsive layout with a header, main content area, and footer. Other email templates extend this base template.
-
 - `passwordreset.pug`: An email template for sending password reset instructions.
-
 - `welcome.pug`: A welcome email template for new users.
 
 Despite having a `passwordreset.pug` template the app does not currently implement a web-based password reset feature!
@@ -109,24 +105,21 @@ Despite having a `passwordreset.pug` template the app does not currently impleme
 ### Database Directory
 
 The `./backend/database` directory contains scripts and data for initializing and populating the MongoDB database.
-
 - `config.js`: Establishes a connection to the MongoDB database.
-
 - `initialize.js`: The main script responsible for initializing the database. It connects to the database, and if the `DATABASE_DATA_POPULATION_INITIAL_SETUP` environment variable is set to `true`, it populates the database with initial data.
 
 #### Data Scripts
 
 - `courses.js`: Contains a function to create initial courses and assign professors to them based on the `PROFESSOR_*` environment variables.
-
 - `questions.js`: Reads questions from a JSON file (`questions_data.json`) and inserts them into the database.
-
 - `subjects.js`: Defines a function to create subjects and assign them to categories. It contains predefined subjects and descriptions mapped to category names.
-
 - `users.js`: Includes a function to create initial user accounts, such as an admin and professors, based on environment variables. It also creates a dummy user account with the predefined `62657cd392fe186ae556620b` id for taking quizzes anonymously.
 
 #### Data Files
 
 - `questions_data.json`: A JSON file containing the complete quiz questions. The `questions.js` script reads data from this file to populate the questions in the database.
+- Each question object includes the `subject`, `type`, `active` status, the actual `question`, an array of possible `answers`, an array of `correctAnswers` indicating the correct option(s), and an optional array of `titles` for certain question types.
+- Question types are: Order, MultipleChoice, gapText, assign1:1 and assignN:1
 
 ### Environment Variables
 
