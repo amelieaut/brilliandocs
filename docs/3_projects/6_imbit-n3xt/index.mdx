@@ -3,11 +3,37 @@ id: imbit-n3xt
 title: IMBIT-N3XT
 ---
 
-## Quick Sheet
-| Name      | URL           | Repo Link                  | Tech Stack | Database | CPU Platform | Hosting Location    |
-|-----------|---------------|----------------------------|------------|----------|--------------|------------|
-| IMBIT-N3XT | https://imbit-n3xt.com | https://github.com/imbit-mannheim/imbit-n3xt | ??? | N/A  | x86         | AWS |
+c## Quick Sheet
 
+| Name       | URL                    | Repo Link                                    | Tech Stack | Database | CPU Platform | Hosting Location |
+| ---------- | ---------------------- | -------------------------------------------- | ---------- | -------- | ------------ | ---------------- |
+| IMBIT-N3XT | https://imbit-n3xt.com | https://github.com/imbit-mannheim/imbit-n3xt | ???        | N/A      | x86          | AWS              |
+
+## CloudFront Behavior Configuration for Brotli Compression
+
+:::note Effect to Deployment time
+Disabling the compression results in an immediate deployment if the Repository got updated.
+:::
+
+The CloudFront behavior has been configured to automatically compress objects using Brotli compression, which is a deviation from the standard behavior where compression is not enabled by default as we don't know if it costs money. This change aims to improve content delivery by reducing file sizes, leading to fast download and potential cost saving on data transfer.
+
+### Differences from Standard Behavior
+
+The following settings have been modified from the standard behavior to enable Brotli compression:
+
+- **Compress Objects Automatically**: Changed from "No" to "Yes" to enable automatic compression of objects that CloudFront determines are eligible for compression.
+- **Viewer Protocol Policy**: Set to "Redirect HTTP to HTTPS" to ensure that Brotli compression is used, as it is only supported over HTTPS.
+- **Cache Policy**: Configured to "CachingOptimized," which supports both Gzip and Brotli compression. This differs from the standard behavior where compression may not be enabled by default.
+
+### Unchanged Settings
+
+The following settings remain unchanged from the standard behavior:
+
+- **Allowed HTTP Methods**: Set to "GET, HEAD," which specifies the HTTP methods that CloudFront allows and caches.
+- **Cache Key and Origin Requests**: Using the recommended "Cache policy and origin request policy" instead of "Legacy cache settings," which determines how CloudFront includes query strings, cookies, and headers in the cache key and forwards requests to the origin.
+- **Origin Request Policy**: No specific policy selected, maintaining the default behavior of forwarding all headers, cookies, and query strings to the origin.
+- **Response Headers Policy**: No specific policy selected, meaning CloudFront does not modify the response headers from the origin.
 
 ## Known Issues and Pending Tasks
+
 Can be found inside the [Repositories Issues](https://github.com/IMBIT-Mannheim/imbit-n3xt/issues) section.
