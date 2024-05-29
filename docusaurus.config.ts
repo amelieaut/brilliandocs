@@ -35,34 +35,35 @@ const config: Config = {
           customCss: './src/css/custom.css',
         },
       } satisfies Preset.Options,
+      '@docusaurus/preset-classic',
+      {
+        // ... other preset options
+        sitemap: {
+          changefreq: 'weekly',
+          priority: 0.5,
+          // trailingSlash is removed from here
+        },
+      },
     ],
   ],
 
   themes: [
     [
-      require.resolve("@easyops-cn/docusaurus-search-local"),
+      require.resolve( "@easyops-cn/docusaurus-search-local" ),
       /** @type {import("@easyops-cn/docusaurus-search-local").PluginOptions} */
-      ({
+      ( {
         docsRouteBasePath: '/',
         hashed: true,
         indexBlog: false,
         removeDefaultStemmer: true,
         searchResultLimits: 8,
         highlightSearchTermsOnTargetPage: true,
-      }),
+      } ),
     ],
   ],
 
   plugins: [
-    require.resolve("docusaurus-plugin-image-zoom"),
-    [
-      '@docusaurus/plugin-sitemap',
-      {
-        changefreq: 'weekly',
-        priority: 0.5,
-        // Do not include the trailingSlash option here, as it's now global
-      },
-    ],
+    require.resolve( "docusaurus-plugin-image-zoom" )
   ],
 
 
