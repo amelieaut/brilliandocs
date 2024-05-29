@@ -55,13 +55,12 @@ const config: Config = {
 
   plugins: [
     require.resolve("docusaurus-plugin-image-zoom"),
-    '@docusaurus/plugin-sitemap',
     [
       '@docusaurus/plugin-sitemap',
       {
         changefreq: 'weekly',
         priority: 0.5,
-        trailingSlash: false,
+        // Do not include the trailingSlash option here, as it's now global
       },
     ],
   ],
