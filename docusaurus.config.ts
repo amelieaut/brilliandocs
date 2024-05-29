@@ -35,15 +35,6 @@ const config: Config = {
           customCss: './src/css/custom.css',
         },
       } satisfies Preset.Options,
-      '@docusaurus/preset-classic',
-      {
-        // ... other preset options
-        sitemap: {
-          changefreq: 'weekly',
-          priority: 0.5,
-          // trailingSlash is removed from here
-        },
-      },
     ],
   ],
 
