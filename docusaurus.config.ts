@@ -35,15 +35,6 @@ const config: Config = {
           customCss: './src/css/custom.css',
         },
       } satisfies Preset.Options,
-      '@docusaurus/preset-classic',
-      {
-        sitemap: {
-          cacheTime: 600 * 1000, // 600 sec - cache purge period
-          changefreq: 'weekly',
-          priority: 0.5,
-          trailingSlash: false,
-        },
-      },
     ],
   ],
 
@@ -62,7 +53,19 @@ const config: Config = {
     ],
   ],
 
-  plugins: [require.resolve("docusaurus-plugin-image-zoom")],
+  plugins: [
+    require.resolve("docusaurus-plugin-image-zoom"),
+    '@docusaurus/plugin-sitemap',
+    [
+      '@docusaurus/plugin-sitemap',
+      {
+        cacheTime: 600 * 1000, // 600 sec - cache purge period
+        changefreq: 'weekly',
+        priority: 0.5,
+        trailingSlash: false,
+      },
+    ],
+  ],
 
 
   themeConfig: {
