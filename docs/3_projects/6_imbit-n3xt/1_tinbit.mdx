@@ -1,0 +1,81 @@
+---
+id: tinbit
+title: TinBit
+---
+
+## Data sources
+
+The data of the companies, lecturers and alumni are stored in three central data files (German, English and Spanish translation) in the data sub
+folder inside the tinbit component folder. They are structured as a JSON file format and new entries can easily be added by copying the structure
+of one entry and pasting it at the end of each object. Don't forget to also add new images then.
+
+:::tip
+You should regularly check the current status of the partner companies and possibly also the lecturers, as they change frequently.
+:::
+
+### Shuffling the data
+
+In order to randomize the order of the cards when accessing the page a shuffle function is applied in the data files. It is located here to ensure
+that the cards do not get shuffled when remounting the TinBit components, just when reloading the page.
+
+```js
+const shuffleArray = (array) => {
+	const shuffledArray = array.slice(); // Create a copy of the array
+	for (let i = shuffledArray.length - 1; i > 0; i--) {
+		const j = Math.floor(Math.random() * (i + 1));
+		[shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]];
+	}
+	return shuffledArray;
+};
+```
+
+## Animations
+
+For animations the [Framer Motion library](https://www.framer.com/motion/ 'Framer Motion library') was used. It handles
+
+- the fade-out and -in of the start screen
+- the swiping of the cards
+- the transitions between the different card decks
+- the slide-in and out of the card switch and favorites containers
+- the heart animation when liking a company
+- and the cards moving to the front when one card is swiped
+
+The most complex one is probably the swiping animation. It is configured in the component `SwipeCard.js`.
+
+```js
+      <motion.div
+        className={`card-container ${flipped ? 'card-container--flipped' : ''}`}
+        style={{
+          x: index === 0 ? x : 0,
+          rotate,
+          zIndex: 3 - index,
+          transform: `scale(${1 - index * 0.06})`,
+          transition: 'transform 0.1s ease-out, opacity 0.1s ease-out',
+          position: 'absolute',
+          top: 0,
+          left: 0,
+        }}
+        drag={index === 0 ? 'x' : false}
+        dragConstraints={{ left: -150, right: 150 }}
+        dragElastic={0.1}
+        onDragEnd={handleDragEnd}
+        animate={controls}
+        initial={{ top: index * 20, scale: 1 - index * 0.05 }}
+        whileTap={{ cursor: index === 0 ? 'grabbing' : 'default' }}
+      >
+```
+
+The attribut `motion` is a framer motion specific addition, that can be added to any HTML or SVG element that you want to animate.
+It also lets you add props to further control and specify the animation. In the following the framer motion specific props are explained further:
+
+| Prop              | Description                                                 | Customization Effects                                                                                  |
+| ----------------- | ----------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
+| `drag`            | Enables dragging along the x-axis for the top card.         | Customizing this to `'x'`, `'y'`, or `true` can change the dragging direction or enable free dragging. |
+| `dragConstraints` | Limits the dragging range horizontally.                     | Adjusting the constraints changes how far the card can be dragged.                                     |
+| `dragElastic`     | Sets the elasticity of dragging.                            | Increasing elasticity makes the drag motion more bouncy, while decreasing makes it more rigid.         |
+| `onDragEnd`       | Callback function triggered when dragging ends.             | Customizing this can change what happens when a drag action is completed (e.g., logging, animation).   |
+| `animate`         | Controls the current animation state of the component.      | Changing the animation controls can alter the animation flow and behavior.                             |
+| `initial`         | Defines the initial animation state.                        | Customizing the initial state can change how cards appear when they first render.                      |
+| `initial.top`     | Sets the initial top position.                              | Adjusting this can change the staggered vertical placement of cards.                                   |
+| `initial.scale`   | Sets the initial scale of the card.                         | Customizing this can affect the initial size and depth appearance of the cards.                        |
+| `whileTap`        | Changes the cursor style when the card is tapped (clicked). | Modifying this can change the cursor feedback during drag interactions.                                |
