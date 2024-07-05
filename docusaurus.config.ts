@@ -1,7 +1,6 @@
-import {themes as prismThemes} from 'prism-react-renderer';
-import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
-import imageZoom from 'docusaurus-plugin-image-zoom';
+import type { Config } from '@docusaurus/types';
+import { themes as prismThemes } from 'prism-react-renderer';
 
 const config: Config = {
   title: 'BrillianDOCS',
@@ -41,20 +40,22 @@ const config: Config = {
 
   themes: [
     [
-      require.resolve("@easyops-cn/docusaurus-search-local"),
+      require.resolve( "@easyops-cn/docusaurus-search-local" ),
       /** @type {import("@easyops-cn/docusaurus-search-local").PluginOptions} */
-      ({
+      ( {
         docsRouteBasePath: '/',
         hashed: true,
         indexBlog: false,
         removeDefaultStemmer: true,
         searchResultLimits: 8,
         highlightSearchTermsOnTargetPage: true,
-      }),
+      } ),
     ],
   ],
 
-  plugins: [require.resolve("docusaurus-plugin-image-zoom")],
+  plugins: [
+    require.resolve( "docusaurus-plugin-image-zoom" )
+  ],
 
 
   themeConfig: {

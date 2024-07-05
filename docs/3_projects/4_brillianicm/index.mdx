@@ -25,6 +25,15 @@ BrillianICM extends its functionality with additional Java classes not found in 
 ## Advanced Database Configuration
 The database schema for BrillianICM is considerably more intricate and can be found in `sql/cake.sql`.
 
+## AWS Cloudfront Configuration
+BrillianICM is an outlier and the default caching options break the login functionality. For BrillianICM login to work the following Cloudfront behaviour settings are requiered:
+
+<details>
+  <summary>Screenshot: Cloudfront Cache Settings</summary>
+  <div>
+   ![Cache Settings](cachesettings.png)
+  </div>
+</details>
 
 ## Known Issues
 Can be found inside the [Repositories Issues](https://github.com/IMBIT-Mannheim/brillianicm/issues) section.
