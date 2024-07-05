@@ -93,6 +93,23 @@ The `components` folder contains all components of the project. They are grouped
 
 To unify all code written so that every developer commits with the same formatting, we used a few tools.
 
+### CSS Naming convention
+
+The name of a BEM (Block-Element-Modifier) entity is unique. The same BEM entity always has the same name in all technologies (CSS, JavaScript, and HTML). The primary purpose of the naming convention is to give names meaning so that they are as informative as possible for the developer. For more information refer to https://en.bem.info/methodology/naming-convention/ and https://getbem.com/naming/.
+
+#### Naming rules
+
+`block-name__elem-name_mod-name_mod-val`
+
+- Names are written in lowercase Latin letters.
+- Words are separated by a hyphen (-).
+- The block name defines the namespace for its elements and modifiers.
+- The element name is separated from the block name by a double underscore (\_\_).
+- The modifier name is separated from the block or element name by a single underscore (\_).
+- The modifier value is separated from the modifier name by a single underscore (\_).
+- For boolean modifiers, the value is not included in the name.
+- Important: Elements of elements do not exist in the BEM methodology. The naming rules do not allow creating elements of elements, but you can nest elements inside each other in the DOM tree.
+
 ### Babel
 
 Babel is a popular transpiler that allows us to use future JavaScript in today’s browsers. In simple words, it can convert the latest version of JavaScript code into one that the browser understands. A transpiler is a tool used to convert source code into another source code of the same level. The latest standard version that JavaScript follows is ES2020, which is not fully supported by all browsers; hence we use Babel to convert it into code that today’s browsers understand. We use Babel with React to transpile the JSX code into simple React functions that browsers can understand. This ensures that our JSX code can work in almost any browser. This combination is widely used in modern web development.
