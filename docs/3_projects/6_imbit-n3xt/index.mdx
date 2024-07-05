@@ -3,19 +3,25 @@ id: imbit-n3xt
 title: IMBIT-N3XT
 ---
 
-c## Quick Sheet
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
+## Quick Sheet
 
 | Name       | URL                    | Repo Link                                    | Tech Stack | Database | CPU Platform | Hosting Location |
 | ---------- | ---------------------- | -------------------------------------------- | ---------- | -------- | ------------ | ---------------- |
 | IMBIT-N3XT | https://imbit-n3xt.com | https://github.com/imbit-mannheim/imbit-n3xt | ???        | N/A      | x86          | AWS              |
 
+## Introduction
+
+IMBIT-N3XT was originally created by the IMBIT20 class. The IMBIT21A course implemented the translation functionality, and the IMBIT21B course reworked the entire application on a technical level. They adapted the design and made it responsive, completely redesigned the TinBit application, and implemented best practices. You can find the first version of the website at http://old.imbit-n3xt.com.
+
 ## CloudFront Behavior Configuration for Brotli Compression
 
-:::note Effect to Deployment time
-Disabling the compression results in an immediate deployment if the Repository got updated.
+:::note Effect on Deployment Time
+Disabling the compression results in an immediate deployment if the repository is updated.
 :::
 
-The CloudFront behavior has been configured to automatically compress objects using Brotli compression, which is a deviation from the standard behavior where compression is not enabled by default as we don't know if it costs money. This change aims to improve content delivery by reducing file sizes, leading to fast download and potential cost saving on data transfer.
+The CloudFront behavior has been configured to automatically compress objects using Brotli compression, which is a deviation from the standard behavior where compression is not enabled by default. This change aims to improve content delivery by reducing file sizes, leading to faster downloads and potential cost savings on data transfer.
 
 ### Differences from Standard Behavior
 
@@ -34,6 +40,203 @@ The following settings remain unchanged from the standard behavior:
 - **Origin Request Policy**: No specific policy selected, maintaining the default behavior of forwarding all headers, cookies, and query strings to the origin.
 - **Response Headers Policy**: No specific policy selected, meaning CloudFront does not modify the response headers from the origin.
 
+## General Project Structure
+
+The code of the application is modularly structured in the [`src`](https://github.com/IMBIT-Mannheim/imbit-n3xt/tree/master/src) folder. It contains the `index` files, the `components`, and the `pages`. You can find explanations for each of these below.
+
+There are a few other important folders. `.ebextensions` contains the configuration file for the Nginx setup of Elastic Beanstalk. `.github` contains the deployment workflow via GitHub Actions - it should be self-explanatory. `.vscode` contains a recommendation of extensions for VSCode that should be installed. When first opening the project, the user is asked if they want to install the extensions (enforcing all extensions is not recommended, so it is not done). It also contains a few workspace settings to ensure consistent formatting and syntax settings.
+
+### Index
+
+The `index.js` file sets up the application by configuring routing, internationalization, and essential components. It manages the application's main structure, including the translation functionality (`IntlProvider`), the routes for navigation (including routing to an Error 404/Not found page), and the main UI components like the `Navbar`, the `FaviconSwitcher`, the `ChatbotScript` (refer to the [Chatbot](./imbit-n3xt/Chatbot) section), and the `Footer`.
+
+It also sets up the basic `Helmet` functionality. Anything you want to load on absolutely **every page** should be included in this Helmet component in the index file.
+
+If you are wondering why the whole app is in strict mode... It makes you more aware of any errors the app encounters. Sometimes, some errors don't stop the app from working, but they would pop up in the console. This React feature makes it hard to overlook any critical errors because it displays the error message prominently.
+
+```js
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <React.StrictMode>
+    <RootApp />
+  </React.StrictMode>
+);
+```
+
+The `index.css` file includes the most basic CSS styles. It is self-explanatory.
+
+Use the `padding-container` for proper left and right padding of all components. It is its own CSS class because sometimes it is not the top-level element of a component when there is a background and the main content of the component should not be too wide. The same applies to the `padding-top` class, which ensures consistent spacing between each component.
+
+### Pages
+
+The `pages` folder contains all the pages of the website. Each page consists of different components and gets routed to via the `index.js` file. Be aware that the `International.js` page is currently not in use as there is no styling and there were no resources available to design and style the page properly. Each page should include its `<title>`. Components that are unlikely to be rendered when entering the page due to being outside of the viewport should be lazy-loaded with `<Suspense>`. See the example below.
+
+```js
+const Metaverse = lazy(() => import('./Metaverse.js'));
+
+const [pagename] = () => {
+  return (
+    <div>
+      <Suspense>
+        <Metaverse />
+      </Suspense>
+    </div>
+  );
+};
+```
+
+### Components
+
+The `components` folder contains all components of the project. They are grouped into the different pages or, if they are reusable, into `general`. The `styling` folder contains all styling for each component. The .css files are named exactly like the component, so it is easily assignable. If a component loads data, the data is in the `data` folder. All media used by the components are in the `media` folder, which is grouped into different categories of media. The media and data files are not named systematically - if you have time, please rename them systematically.
+
+## Formatting & Best Practices
+
+To unify all code written so that every developer commits with the same formatting, we used a few tools.
+
+### Babel
+
+Babel is a popular transpiler that allows us to use future JavaScript in today’s browsers. In simple words, it can convert the latest version of JavaScript code into one that the browser understands. A transpiler is a tool used to convert source code into another source code of the same level. The latest standard version that JavaScript follows is ES2020, which is not fully supported by all browsers; hence we use Babel to convert it into code that today’s browsers understand. We use Babel with React to transpile the JSX code into simple React functions that browsers can understand. This ensures that our JSX code can work in almost any browser. This combination is widely used in modern web development.
+
+### GitHub
+
+We used `.editorconfig` and `.gitattributes` to tell GitHub to change all line endings into "lf" and to ensure that each file ends with a new line. CLRF and LF are used to mark a line break. Different OS platforms use different line endings, so we decided to force the use of LF for all line breaks across all files and platforms. Even if your computer stores it differently, GitHub changes the line endings upon commit.
+
+### ESLint
+
+ESLint is a popular open-source JavaScript linting utility. It analyzes your code for potential errors, enforces coding standards, and improves code quality. It can also help you identify and fix common mistakes, use best practices, and maintain consistency across your codebase.
+
+See inline documentation in `.eslint.cjs` for more information.
+
+### Prettier
+
+Prettier is an opinionated code formatter. It enforces a consistent style by parsing your code and re-printing it with its own rules that take the maximum line length into account, wrapping code when necessary.
+
+- **endOfLine**: `"lf"` - Enforces the use of Unix-style line endings (LF) across the project.
+- **singleQuote**: `true` - Ensures that single quotes are used instead of double quotes in the code.
+- **trailingComma**: `"all"` - Adds a trailing comma wherever possible, which helps in cleaner git diffs.
+- **useTabs**: `false` - Enforces the use of spaces instead of tabs for indentation.
+- **semi**: `true` - Ensures that semicolons are used at the end of statements.
+- **quoteProps**: `"consistent"` - Ensures that object properties are quoted consistently. If one property in an object requires quotes, then all properties will be quoted.
+- **jsxSingleQuote**: `true` - Ensures that single quotes are used in JSX attributes instead of double quotes.
+- **printWidth**: `80` - Sets the maximum line width to 80 characters for better readability.
+- **overrides**: Custom configurations for specific file types.
+  - **files**: `"*.css"` - Targets all CSS files in the project.
+  - **options**:
+    - **singleQuote**: `true` - Ensures that single quotes are used in CSS files as well.
+
+### TypeScript
+
+TypeScript is a syntactic superset of JavaScript that adds static typing. This means
+
+that TypeScript adds syntax on top of JavaScript, allowing developers to add types. TypeScript being a "syntactic superset" means that it shares the same base syntax as JavaScript but adds additional features. JavaScript is a loosely typed language, making it difficult to understand what types of data are being passed around. In JavaScript, function parameters and variables don't have any type information. Developers need to look at documentation or guess based on implementation. TypeScript allows specifying the types of data being passed around within the code and has the ability to report errors when the types don't match. For example, TypeScript will report an error when passing a string into a function that expects a number. JavaScript will not.
+
+- **module**: `"ESNext"` - Specifies the module code generation method. Using `ESNext` for modern JavaScript modules.
+- **target**: `"ES2020"` - Sets the JavaScript language version for emitted JavaScript and includes compatible library declarations.
+- **jsx**: `"react"` - Supports JSX syntax in `.tsx` files, assuming a React environment.
+- **strict**: `true` - Enables all strict type-checking options.
+- **strictNullChecks**: `true` - Ensures that `null` and `undefined` are not assignable to any type except their own.
+- **strictFunctionTypes**: `true` - Ensures function parameters are checked against each other strictly.
+- **baseUrl**: `"./"` - Sets the base directory for resolving non-relative module names.
+- **paths**:
+  - **@components/\***: `["src/components/*"]` - Maps `@components/*` to `src/components/*`.
+  - **@pages/\***: `["src/pages/*"]` - Maps `@pages/*` to `src/pages/*`.
+  - **@utils/\***: `["src/utils/*"]` - Maps `@utils/*` to `src/utils/*`.
+- **esModuleInterop**: `true` - Enables `esModuleInterop` for compatibility with CommonJS modules.
+- **allowSyntheticDefaultImports**: `true` - Allows default imports from modules with no default export.
+- **skipLibCheck**: `true` - Skips type checking of all declaration files (`.d.ts`).
+- **forceConsistentCasingInFileNames**: `true` - Ensures that file names are case-sensitive.
+- **noFallthroughCasesInSwitch**: `true` - Prevents fallthrough cases in switch statements.
+- **noImplicitReturns**: `true` - Ensures that all code paths in a function return a value.
+- **noUnusedLocals**: `true` - Reports errors on unused local variables.
+- **noUnusedParameters**: `true` - Reports errors on unused function parameters.
+- **resolveJsonModule**: `true` - Allows importing modules with a `.json` extension.
+- **moduleResolution**: `"node"` - Sets module resolution strategy to Node.js' resolution algorithm.
+- **sourceMap**: `true` - Generates corresponding `.map` files.
+- **outDir**: `"./dist"` - Redirects output structure to the `dist` directory.
+- **rootDir**: `"./src"` - Specifies the root directory of input files.
+- **lib**: `["DOM", "DOM.Iterable", "ES2020"]` - Includes library files for DOM and ES2020 features.
+- **types**: `["node"]` - Includes type declarations for Node.js.
+- **include**: `["src/**/*"]` - Specifies the files to be included in the compilation.
+- **exclude**: `["node_modules", "**/node_modules/*", "dist", "build"]` - Specifies the files and directories to be excluded from the compilation.
+
+### VSCode
+
+The `settings.json` file in `.vscode` contains the VSCode settings used in this project.
+
+#### General Editor Settings
+
+- **editor.formatOnSave**: `true` - Automatically formats the document on save.
+- **editor.tabSize**: `2` - Sets the tab size to 2 spaces.
+- **editor.wordWrap**: `"on"` - Enables word wrapping.
+
+#### Code Actions on Save
+
+- **editor.codeActionsOnSave**:
+  - **source.fixAll**: `"always"` - Applies all available fixes on save.
+  - **source.organizeImports**: `"always"` - Organizes imports on save.
+
+#### File Exclusions
+
+- **files.exclude**:
+  - `**/node_modules`: `true` - Excludes the `node_modules` directory.
+  - `**/.git`: `true` - Excludes the `.git` directory.
+  - `**/.DS_Store`: `true` - Excludes `.DS_Store` files.
+  - `**/Thumbs.db`: `true` - Excludes `Thumbs.db` files.
+
+#### Import Updates
+
+- **javascript.updateImportsOnFileMove.enabled**: `"always"` - Automatically updates import paths when files are moved or renamed.
+
+#### Default Formatters
+
+- **[javascript]**:
+  - **editor.defaultFormatter**: `"esbenp.prettier-vscode"` - Uses Prettier as the default formatter for JavaScript files.
+- **[typescript]**:
+  - **editor.defaultFormatter**: `"esbenp.prettier-vscode"` - Uses Prettier as the default formatter for TypeScript files.
+- **[json]**:
+  - **editor.defaultFormatter**: `"esbenp.prettier-vscode"` - Uses Prettier as the default formatter for JSON files.
+- **[css]**:
+  - **editor.suggest.insertMode**: `"replace"` - Replaces the suggestion on accept.
+  - **editor.defaultFormatter**: `"esbenp.prettier-vscode"` - Uses Prettier as the default formatter for CSS files.
+
+#### ESLint Settings
+
+- **eslint.enable**: `true` - Enables ESLint.
+- **eslint.validate**: `["javascript", "javascriptreact", "typescript", "typescriptreact", "css"]` - Specifies the languages to be validated by ESLint.
+- **eslint.alwaysShowStatus**: `true` - Always shows the ESLint status in the status bar.
+
+#### Prettier Settings
+
+- **prettier.singleQuote**: `true` - Enforces single quotes.
+- **prettier.trailingComma**: `"all"` - Adds trailing commas wherever possible.
+- **prettier.useTabs**: `false` - Uses spaces instead of tabs.
+- **prettier.endOfLine**: `"lf"` - Enforces Unix-style line endings.
+- **prettier.semi**: `true` - Uses semicolons at the end of statements.
+- **prettier.quoteProps**: `"consistent"` - Quotes object properties consistently.
+- **prettier.jsxSingleQuote**: `true` - Uses single quotes in JSX.
+- **prettier.printWidth**: `80` - Sets the maximum line width to 80 characters.
+
+#### Additional Settings
+
+- **files.eol**: `"\n"` - Sets the end-of-line character to LF.
+- **editor.defaultFormatter**: `"esbenp.prettier-vscode"` - Uses Prettier as the default formatter.
+- **editor.formatOnSaveMode**: `"file"` - Formats the entire file on save.
+- **typescript.tsdk**: `"node_modules\\typescript\\lib"` - Specifies the path to the TypeScript SDK.
+
+## Sitemap Generation
+
+For generating a sitemap, use the `sitemap-builder.js` file. In the `sitemap-routes.js` file, all pages are specified, including the priority which must be specified. When a new page is introduced, update this file. Afterwards, run `node ./src/sitemap-builder.js` in the CLI to generate a new sitemap.
+
+## Other
+
+### Webhint
+
+When you open the `report.html` file, you'll see a Webhint report. Webhint is a linting tool focused on best practices. It helps improve the site's accessibility, speed, cross-browser compatibility, and more by checking the code for best practices and common errors. You can find areas to improve in this report.
+
+### Prerendered
+
+In the `prerendered` folder, you will find a prerendered version of each page. You can generate a new version by running `node ./prerender.mjs`. The prerendered page is without styling and should be presented to crawlers if set up correctly. At the time of writing, this is not used.
+
 ## Known Issues and Pending Tasks
 
-Can be found inside the [Repositories Issues](https://github.com/IMBIT-Mannheim/imbit-n3xt/issues) section.
+Known issues and pending tasks can be found in the [Repository's Issues](https://github.com/IMBIT-Mannheim/imbit-n3xt/issues) section.
